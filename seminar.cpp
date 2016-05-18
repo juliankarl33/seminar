@@ -21,8 +21,7 @@ typedef double type;
 typedef std::vector<type> typeVec;
 typedef std::vector<int> intVec;
 
-// TEST _____________________________________________________________________________________________________________
-
+// template class for a 2D grid
 template<typename T> class grid {
 
 private:
@@ -65,15 +64,10 @@ public:
 
 //___________________________________________________________________________________________________________________
 
-// converts a timeval struct to seconds
-double timevalToDouble(struct timeval *t) {
-	return (double) (t->tv_sec) + (((double) (t->tv_usec)) / 1000000.0);
-}
-
 // calculates the l2-norm of the residual
 double residuum(int n, grid<type> &u, grid<type> &f, double h) {
-	double residuum = 0;
-	double sum = 0;
+	double residuum = 0.0;
+	double sum = 0.0;
 	for (int i = 1; i < n - 1; i++) {
 		for (int k = 1; k < n - 1; k++) {
 			double temp = ((u(k - 1, i) + u(k + 1, i))
@@ -87,8 +81,7 @@ double residuum(int n, grid<type> &u, grid<type> &f, double h) {
 }
 
 // calculates the residual
-void residual(int n, grid<type> &u, grid<type> &f, grid<type> &res,
-		double h) {
+void residual(int n, grid<type> &u, grid<type> &f, grid<type> &res, double h) {
 	for (int i = 1; i < n - 1; i++) {
 		for (int k = 1; k < n - 1; k++) {
 			res(k, i) = ((u(k - 1, i) + u(k + 1, i))
@@ -103,36 +96,43 @@ void coarsening(int l, grid<type>& from, grid<type>& to, intVec& n) {
 
 	for (int i = 1; i < n[l - 1] - 1; i++) {
 		for (int j = 1; j < n[l - 1] - 1; j++) {
-			to(j, i) = (from(2 * j - 1, 2 * i + 1) + 2 * from(2 * j, 2 * i + 1)
-					+ from(2 * j + 1, 2 * i + 1) + 2 * from(2 * j - 1, 2 * i)
-					+ 4 * from(2 * j, 2 * i) + 2 * from(2 * j + 1, 2 * i)
-					+ from(2 * j - 1, 2 * i - 1) + 2 * from(2 * j, 2 * i - 1)
-					+ from(2 * j + 1, 2 * i - 1)) / 16.0;
+			if (!(i == n[l - 1] / 2  && j >= n[l - 1] / 2 )) {
+				to(j, i) = (from(2 * j - 1, 2 * i + 1)
+						+ 2 * from(2 * j, 2 * i + 1)
+						+ from(2 * j + 1, 2 * i + 1)
+						+ 2 * from(2 * j - 1, 2 * i) + 4 * from(2 * j, 2 * i)
+						+ 2 * from(2 * j + 1, 2 * i)
+						+ from(2 * j - 1, 2 * i - 1)
+						+ 2 * from(2 * j, 2 * i - 1)
+						+ from(2 * j + 1, 2 * i - 1)) / 16.0;
+			}
 		}
 	}
-
 }
 
 void interpolation(int l, grid<type>& from, grid<type>& to, intVec& n) {
 
 	for (int i = 1; i < n[l] - 1; i++) {
 		for (int j = 1; j < n[l] - 1; j++) {
-			if (i % 2 == 0 && j % 2 == 0) {
-				// wert uebernehmen
-				to(j, i) = from(j / 2, i / 2);
-			} else if (i % 2 != 0 && j % 2 != 0) {
-				// kreuz
-				to(j, i) = (type) (from(j / 2, i / 2) + from(j / 2, (i / 2) + 1)
-						+ from((j / 2) + 1, i / 2)
-						+ from((j / 2) + 1, (i / 2) + 1)) / 4.0;
-			} else if (i % 2 == 0 && j % 2 != 0) {
-				// vertikal
-				to(j, i) = (double) (from(j / 2, i / 2)
-						+ from((j / 2) + 1, i / 2)) / 2.0;
-			} else {
-				// horizontal
-				to(j, i) = (double) (from(j / 2, i / 2)
-						+ from(j / 2, (i / 2) + 1)) / 2.0;
+			if (!(i == n[l] / 2  && j >= n[l] / 2)) {
+				if (i % 2 == 0 && j % 2 == 0) {
+					// wert uebernehmen
+					to(j, i) = from(j / 2, i / 2);
+				} else if (i % 2 != 0 && j % 2 != 0) {
+					// kreuz
+					to(j, i) = (type) (from(j / 2, i / 2)
+							+ from(j / 2, (i / 2) + 1)
+							+ from((j / 2) + 1, i / 2)
+							+ from((j / 2) + 1, (i / 2) + 1)) / 4.0;
+				} else if (i % 2 == 0 && j % 2 != 0) {
+					// vertikal
+					to(j, i) = (double) (from(j / 2, i / 2)
+							+ from((j / 2) + 1, i / 2)) / 2.0;
+				} else {
+					// horizontal
+					to(j, i) = (double) (from(j / 2, i / 2)
+							+ from(j / 2, (i / 2) + 1)) / 2.0;
+				}
 			}
 		}
 	}
@@ -148,10 +148,12 @@ void Red_Black_Gauss(int n, grid<type> &u, grid<type> &f, double h,
 				q++;
 			}
 			for (; q < n - 1; q = q + 2) {
-				u(q, m) = (1.0 / 4.0)
-						* (h * h * f(q, m)
-								+ (u(q - 1, m) + u(q + 1, m) + u(q, m - 1)
-										+ u(q, m + 1)));
+				if (!(m == n / 2  && q >= n / 2 )) {
+					u(q, m) = (1.0 / 4.0)
+							* (h * h * f(q, m)
+									+ (u(q - 1, m) + u(q + 1, m) + u(q, m - 1)
+											+ u(q, m + 1)));
+				}
 			}
 		}
 		for (int m = 1; m < n - 1; m++) {
@@ -160,10 +162,12 @@ void Red_Black_Gauss(int n, grid<type> &u, grid<type> &f, double h,
 				q++;
 			}
 			for (; q < n - 1; q = q + 2) {
-				u(q, m) = (1.0 / 4.0)
-						* (h * h * f(q, m)
-								+ (u(q - 1, m) + u(q + 1, m) + u(q, m - 1)
-										+ u(q, m + 1)));
+				if (!(m == n / 2  && q >= n / 2 )) {
+					u(q, m) = (1.0 / 4.0)
+							* (h * h * f(q, m)
+									+ (u(q - 1, m) + u(q + 1, m) + u(q, m - 1)
+											+ u(q, m + 1)));
+				}
 			}
 		}
 	}
@@ -172,8 +176,8 @@ void Red_Black_Gauss(int n, grid<type> &u, grid<type> &f, double h,
 
 //Parameter "finest" wird fuer die Neuman-RB (GHOST) benoetigt. Damit wird nur beim feinsten Grid die Neumann-RB im Red-Black-Gauss berechnet
 void solveMG(int l, std::vector<grid<type>>& u, std::vector<grid<type>>& f,
-		intVec& n, std::vector<type>& h,
-		std::vector<grid<type>>& res, int v1 = 2, int v2 = 1, int gamma = 1) {
+		intVec& n, std::vector<type>& h, std::vector<grid<type>>& res, int v1 =
+				2, int v2 = 1, int gamma = 1) {
 
 	//Presmoothing
 	Red_Black_Gauss(n[l], u[l], f[l], h[l], v1);
@@ -195,12 +199,11 @@ void solveMG(int l, std::vector<grid<type>>& u, std::vector<grid<type>>& f,
 			}
 		}
 		for (int i = 0; i < gamma; i++) {
-
 			solveMG(l - 1, u, f, n, h, res, v1, v2, gamma);
 		}
 
 		// interpolation
-		grid<type> correction(n[l], 0.0);
+		grid<type> correction(n[l], n[l], 0.0);
 		interpolation(l, u[l - 1], correction, n);
 
 		// correction
@@ -217,7 +220,7 @@ void solveMG(int l, std::vector<grid<type>>& u, std::vector<grid<type>>& f,
 
 int main(int argc, char **argv) {
 
-// Ueberpruefung, ob Eingabeparamter passen
+	// Ueberpruefung, ob Eingabeparamter passen
 	if (argc != 2) {
 		fprintf(stderr, "Usage: ./mgsolve levels\n");
 		exit(EXIT_SUCCESS);
@@ -251,41 +254,73 @@ int main(int argc, char **argv) {
 	}
 
 	// Initialisierung des Gitters
-
 	for (int i = l - 1; i >= 0; i--) {
 		u[i] = grid<type>(n[i], n[i], 0.0);
 	}
-	for (int i = 0; i < n[l - 1]; i++) {
-		double x = -1.0 + i * h[l - 1];
-		u[l - 1](i, 0) = sqrt(sqrt(x * x + 1)) * sin(0.5 * atan2(x, -1.0));	// unten
-		u[l - 1](i, n[l - 1] - 1) = sqrt(sqrt(x * x + 1))
-				* sin(0.5 * atan2(x, 1.0));	// oben
 
+	// Horizontale und vertikale Randpunkte setzen
+	u[l - 1](n[l - 1] - 1, n[l - 1] / 2) = 0.0;	// Rechts
+	u[l - 1](0, n[l - 1] / 2) = 1.0;	// Links
+	u[l - 1](n[l - 1] / 2, n[l - 1] - 1) = sin(0.25 * M_PI);	// Oben
+	u[l - 1](n[l - 1] / 2, 0) = sin(0.75 * M_PI);	// Unten
+
+	// Randpunkte setzen, die von 0 bis 1 laufen
+	for (int i = n[l - 1] / 2 + 1; i < n[l - 1]; i++) {
 		double y = -1.0 + i * h[l - 1];
-		u[l - 1](0, i) = sqrt(sqrt(y * y + 1)) * sin(0.5 * atan2(-1.0, y));	// links
-		u[l - 1](n[l - 1] - 1, i) = sqrt(sqrt(y * y + 1))
-				* sin(0.5 * atan2(1.0, y));	// rechts
+
+		// rechte Seite oben
+		u[l - 1](n[l - 1] - 1, i) = sqrt(sqrt(y * y + 1)) * sin(0.5 * atan(y));
+
+		// obere Seite rechts
+		u[l - 1](i, n[l - 1] - 1) = sqrt(sqrt(y * y + 1))
+				* sin(0.5 * atan(1.0 / y));
+
+		// untere Seite rechts
+		u[l - 1](i, 0) = sqrt(sqrt(y * y + 1))
+				* sin(0.5 * (atan(y) + ((3.0 / 2.0) * M_PI)));
+
+		// linke Seite oben
+		u[l - 1](0, i) = sqrt(sqrt(y * y + 1)) * sin(0.5 * (M_PI - atan(y)));
+
 	}
 
-// TIMER
-	struct timeval t1;
-	gettimeofday(&t1, NULL);
+	// Randpunkte setzen, die von 0 bis -1 laufen
+	for (int i = n[l - 1] / 2 - 1; i > 0 - 1; i--) {
+		double y = -1.0 + i * h[l - 1];
 
-// Multigrid solver ------------------------------------------------------------------------------------------------
-	std::cout << "Your Alias: "<< "best Team " << std::endl;
+		// rechte Seite unten
+		u[l - 1](n[l - 1] - 1, i) = sqrt(sqrt(y * y + 1))
+				* sin(0.5 * (2 * M_PI - atan(-y)));
+
+		// obere Seite links
+		u[l - 1](i, n[l - 1] - 1) = sqrt(sqrt(y * y + 1))
+				* sin(0.5 * (0.5 * M_PI + atan(-y)));
+
+		// untere Seite links
+		u[l - 1](i, 0) = sqrt(sqrt(y * y + 1))
+				* sin(0.5 * (((3.0 / 2.0) * M_PI) - atan(-y)));
+
+		// linke Seite unten
+		u[l - 1](0, i) = sqrt(sqrt(y * y + 1)) * sin(0.5 * (M_PI + atan(-y)));
+	}
+
+	// Multigrid solver ------------------------------------------------------------------------------------------------
+	std::cout << "Your Alias: " << "best Team " << std::endl;
 	struct timeval t0, t;
 	gettimeofday(&t0, NULL);
-	//solveMG(l - 1, u, f, n, h, res, 1);
+	//Red_Black_Gauss( n[l-1], u[l-1], f[l-1], h[l-1], 10000);
+	solveMG(l - 1, u, f, n, h, res, 1);
 	gettimeofday(&t, NULL);
-	std::cout << "Wall clock time of MG execution: " <<
-	((int64_t)(t.tv_sec - t0.tv_sec) * (int64_t)1000000 +
-	(int64_t)t.tv_usec - (int64_t)t0.tv_usec) * 1e-3 << " ms" << std::endl;
+	std::cout << "Wall clock time of MG execution: "
+			<< ((int64_t) (t.tv_sec - t0.tv_sec) * (int64_t) 1000000
+					+ (int64_t) t.tv_usec - (int64_t) t0.tv_usec) * 1e-3
+			<< " ms" << std::endl;
 
-// output --------------------------------------------------------------------------------------------------------------
+	// output --------------------------------------------------------------------------------------------------------------
 	std::ofstream out;
 	out.open("solution.txt", std::ios::out);
 
-// Ausgabe fuer solution.txt
+	// Ausgabe fuer solution.txt
 	out << "# x y u(x,y)\n" << std::endl;
 	for (int j = 0; j < n[l - 1]; j++) {
 		for (int i = 0; i < n[l - 1]; i++) {
@@ -296,4 +331,8 @@ int main(int argc, char **argv) {
 		out << std::endl;
 	}
 	out.close();
+
+	int x;
+	std::cin >> x;
+	std::cout << x;
 }
