@@ -303,6 +303,23 @@ int main(int argc, char **argv) {
 		// linke Seite unten
 		u[l - 1](0, i) = sqrt(sqrt(y * y + 1)) * sin(0.5 * (M_PI + atan(-y)));
 	}
+    
+    //init.dat Ausgabe
+    std::ofstream init;
+    out.open("init.dat", std::ios::out);
+    
+    // Ausgabe fuer solution.dat
+    out << "# x y u(x,y)\n" << std::endl;
+    for (int j = 0; j < n[l - 1]; j++) {
+        for (int i = 0; i < n[l - 1]; i++) {
+            double x = -1.0 + i * h[l - 1];
+            double y = -1.0 + j * h[l - 1];
+            init << x << " " << y << " " << u[l - 1](i, j) << std::endl;
+        }
+        init << std::endl;
+    }
+    init.close();
+    
 
 	// Multigrid solver ------------------------------------------------------------------------------------------------
 	std::cout << "Your Alias: " << "best Team " << std::endl;
@@ -318,9 +335,9 @@ int main(int argc, char **argv) {
 
 	// output --------------------------------------------------------------------------------------------------------------
 	std::ofstream out;
-	out.open("solution.txt", std::ios::out);
+	out.open("solution.dat", std::ios::out);
 
-	// Ausgabe fuer solution.txt
+	// Ausgabe fuer solution.dat
 	out << "# x y u(x,y)\n" << std::endl;
 	for (int j = 0; j < n[l - 1]; j++) {
 		for (int i = 0; i < n[l - 1]; i++) {
