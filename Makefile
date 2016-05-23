@@ -1,12 +1,12 @@
-CXXFLAGS =	-O0 -g -Wall -std=c++11 -fmessage-length=0
+CXXFLAGS =	-O3 -fopenmp -g  -Werror -Winline -pedantic -Wall -std=c++11 -fmessage-length=0
 
 OBJS =		seminar.o
 
-LIBS =
+LIBS = -fopenmp
 
 TARGET =	seminar
 
-$(TARGET):	$(OBJS)
+$(TARGET):	$(OBJS) Makefile
 	$(CXX) -o $(TARGET) $(OBJS) $(LIBS)
 
 all:	$(TARGET)

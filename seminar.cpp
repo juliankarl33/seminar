@@ -17,6 +17,9 @@
 #include <assert.h>
 #include <sys/time.h>
 
+#define BLOCKFAKI 1000
+#define BLOCKFAKJ 1000
+
 typedef double type;
 typedef std::vector<type> typeVec;
 typedef std::vector<int> intVec;
@@ -83,10 +86,12 @@ double residuum(int n, grid<type> &u, grid<type> &f, double h) {
 // calculates the residual
 void residual(int n, grid<type> &u, grid<type> &f, grid<type> &res, double h) {
 	for (int i = 1; i < n - 1; i++) {
-		for (int k = 1; k < n - 1; k++) {
+        for (int k = 1; k < n - 1; k++) {
+            if (!(i == n / 2  && k >= n / 2 )) {
 			res(k, i) = ((u(k - 1, i) + u(k + 1, i))
 					+ (u(k, i - 1) + u(k, i + 1)) - (4 * u(k, i))) / (h * h)
 					+ f(k, i);
+            }
 		}
 	}
 }
@@ -177,7 +182,7 @@ void Red_Black_Gauss(int n, grid<type> &u, grid<type> &f, double h,
 //Parameter "finest" wird fuer die Neuman-RB (GHOST) benoetigt. Damit wird nur beim feinsten Grid die Neumann-RB im Red-Black-Gauss berechnet
 void solveMG(int l, std::vector<grid<type>>& u, std::vector<grid<type>>& f,
 		intVec& n, std::vector<type>& h, std::vector<grid<type>>& res, int v1 =
-				2, int v2 = 1, int gamma = 1) {
+                2, int v2 = 1, int gamma = 2) {
 
 	//Presmoothing
 	Red_Black_Gauss(n[l], u[l], f[l], h[l], v1);
@@ -231,7 +236,7 @@ int main(int argc, char **argv) {
 
 	intVec n(l, 0);	// total number of gird points in x and y-direction
 	typeVec h(l, 0.0);// mesh size of each levels, where h[0] is the mesh size of the coarsesed grid
-	std::vector<grid<type>> f(l);	// vector of grids for the right hand side
+    std::vector<grid<type>> f(l);	// vector of grids for the rig1ht hand side
 	std::vector<grid<type>> res(l);	// vector of grids for the residuums
 	std::vector<grid<type>> u(l);	// vector of grids for the approximation u
 
@@ -306,10 +311,10 @@ int main(int argc, char **argv) {
     
     //init.dat Ausgabe
     std::ofstream init;
-    out.open("init.dat", std::ios::out);
+    init.open("init.dat", std::ios::out);
     
     // Ausgabe fuer solution.dat
-    out << "# x y u(x,y)\n" << std::endl;
+    init << "# x y u(x,y)\n" << std::endl;
     for (int j = 0; j < n[l - 1]; j++) {
         for (int i = 0; i < n[l - 1]; i++) {
             double x = -1.0 + i * h[l - 1];
@@ -319,14 +324,16 @@ int main(int argc, char **argv) {
         init << std::endl;
     }
     init.close();
-    
+
 
 	// Multigrid solver ------------------------------------------------------------------------------------------------
 	std::cout << "Your Alias: " << "best Team " << std::endl;
 	struct timeval t0, t;
 	gettimeofday(&t0, NULL);
-	//Red_Black_Gauss( n[l-1], u[l-1], f[l-1], h[l-1], 10000);
-	solveMG(l - 1, u, f, n, h, res, 1);
+    //Red_Black_Gauss( n[l-1], u[l-1], f[l-1], h[l-1], 10000);
+    for(int i = 0; i < 5; i++){
+        solveMG(l - 1, u, f, n, h, res);
+    }
 	gettimeofday(&t, NULL);
 	std::cout << "Wall clock time of MG execution: "
 			<< ((int64_t) (t.tv_sec - t0.tv_sec) * (int64_t) 1000000
@@ -334,6 +341,14 @@ int main(int argc, char **argv) {
 			<< " ms" << std::endl;
 
 	// output --------------------------------------------------------------------------------------------------------------
+
+
+
+
+
+    std::cout << "L2 residual: " << residuum(n[l-1],  u[l-1], f[l-1], h[l-1]) << std::endl;
+
+
 	std::ofstream out;
 	out.open("solution.dat", std::ios::out);
 
@@ -347,9 +362,23 @@ int main(int argc, char **argv) {
 		}
 		out << std::endl;
 	}
-	out.close();
+    out.close();
 
-	int x;
-	std::cin >> x;
-	std::cout << x;
+    double error = 0.0;
+    residual(n[l-1], u[l-1], f[l-1], res[l-1], h[l-1]);
+    for(int i = 0; i< n[l-1]; i++){
+        for(int j = 0; j < n[l-1]; j++){
+            u[l-1](i,j)=0.0;
+        }
+     }
+
+    Red_Black_Gauss(n[l-1], u[l-1], res[l-1], h[l-1], 1000);
+    for(int i = 0; i< n[l-1]; i++){
+        for(int j = 0; j < n[l-1]; j++){
+            error += u[l-1](i,j)*u[l-1](i,j);
+        }
+     }
+
+     std::cout << "L2 error: " << sqrt( error/(n[l-1]-1)*(n[l-1]-1)) << std::endl;
+
 }
