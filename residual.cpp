@@ -35,9 +35,9 @@ void residual(int n, grid<type> &u, grid<type> &f, grid<type> &res, double h,
 			erg1 = _mm_add_pd(erg1, rightHandSide);
 
 			//_mm_storeu_pd(&res(k, i), erg1);
-			fprintf(stderr, "noch nicht\n");
-			_mm_stream_pd(&res(k-2, i-1), erg1); //eventuell non temporal store benoetigt aber allignment
-			fprintf( stderr, "aus\n");
+			//fprintf(stderr, "noch nicht\n");
+			_mm_stream_pd(&res(k, i), erg1); //eventuell non temporal store benoetigt aber allignment
+			//fprintf( stderr, "aus\n");
 
 		}
 	}
