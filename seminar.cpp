@@ -16,6 +16,7 @@
 #include <iostream>
 #include <assert.h>
 #include <sys/time.h>
+#include "emmintrin.h"
 
 #define BLOCKFAKI 1000
 #define BLOCKFAKJ 1000
@@ -34,20 +35,22 @@ private:
 
 public:
 	grid() {
+		//data = NULL;
 		lengthInX = 0;
 		lengthInY = 0;
 	}
 	grid(size_t xDim, size_t yDim) {
-		data = std::vector<T>(xDim * yDim, (T) (0.0));
-		lengthInX = xDim;
+		data = std::vector<T>((xDim+1) * yDim, (T) (0.0));
+		lengthInX = xDim+1;
 		lengthInY = yDim;
 	}		// Standart-constructor
 	grid(size_t xDim, size_t yDim, T value) {
-		data = std::vector<T>(xDim * yDim, value);
-		lengthInX = xDim;
+		data = std::vector<T>((xDim+1) * yDim, value);
+		//data = (double*)malloc((xDim+1)*yDim);
+		lengthInX = xDim+1;
 		lengthInY = yDim;
 	}	// initalisation-constructor
-	~grid() {
+	virtual ~grid() {
 	}		// Destructor
 
 	size_t lengthX() {
@@ -58,7 +61,7 @@ public:
 	}	// returns number of elements in y direction
 
 	T& operator()(size_t i, size_t j) {
-		assert(i < lengthInX);
+		assert(i < lengthInX-1);
 		assert(j < lengthInY);
 		return data[j * lengthInX + i];
 	}	// return a element at [j*nx+i] so i=x and j=y
@@ -96,6 +99,45 @@ void residual(int n, grid<type> &u, grid<type> &f, grid<type> &res, double h) {
 	}
 }
 
+/*
+void residual(int n, grid<type> &u, grid<type> &f, grid<type> &res, double h) {
+	double h2 = h * h;
+	__m128d links, rechts, mitte, oben, unten, rightHandSide, erg1, erg2;
+	__m128d const4 = _mm_set_pd(4, 4);
+	__m128d meshsize = _mm_load_pd1(&h2);
+
+	//#pragma omp parallel for private(links, rechts, mitte, oben, unten, rightHandSide, erg1, erg2)
+	for (int i = 1; i < n - 1; i++) {
+
+		res(1, i) = ((u(0, i) + u(2, i)) + (u(1, i - 1) + u(1, i + 1))
+				- (4 * u(1, i))) / (h * h) + f(1, i);
+
+		for (int k = 2; k < n - 1; k = k + 2) {
+
+			links = _mm_loadu_pd(&u(k - 1, i));
+			rechts = _mm_loadu_pd(&u(k + 1, i));
+			erg1 = _mm_add_pd(links, rechts);
+
+			oben = _mm_loadu_pd(&u(k, i + 1));
+			unten = _mm_loadu_pd(&u(k, i - 1));
+			erg2 = _mm_add_pd(unten, oben);
+
+			erg1 = _mm_add_pd(erg1, erg2);
+
+			mitte = _mm_loadu_pd(&u(k, i));
+			mitte = _mm_mul_pd(mitte, const4);
+			erg2 = _mm_sub_pd(erg1, mitte);
+
+			erg1 = _mm_div_pd(erg2, meshsize);
+			rightHandSide = _mm_loadu_pd(&f(k, i));
+			erg1 = _mm_add_pd(erg1, rightHandSide);
+
+			_mm_stream_pd(&res(k, i), erg1); 
+
+		}
+	}
+}
+*/
 // restrict a grid (from) with the full weighting stencile to another grid (to). From has size nx[l] and to has size nx[l-1].
 void coarsening(int l, grid<type>& from, grid<type>& to, intVec& n) {
 
@@ -327,7 +369,7 @@ int main(int argc, char **argv) {
 
 
 	// Multigrid solver ------------------------------------------------------------------------------------------------
-	std::cout << "Your Alias: " << "best Team " << std::endl;
+	std::cout << "Your Alias: " << "bu43jazu" << std::endl;
 	struct timeval t0, t;
 	gettimeofday(&t0, NULL);
     //Red_Black_Gauss( n[l-1], u[l-1], f[l-1], h[l-1], 10000);
