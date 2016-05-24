@@ -107,41 +107,21 @@ void residual(int n, grid<type> &u, grid<type> &f, grid<type> &res, double h) {
 		}
 	}
 }
-*/
 
+*/
 void residual(int n, grid<type> &u, grid<type> &f, grid<type> &res, double h) {
 	double h2 = h * h;
 	__m128d links, rechts, mitte, oben, unten, rightHandSide, erg1, erg2;
 	__m128d const4 = _mm_set_pd(4, 4);
 	__m128d meshsize = _mm_load_pd1(&h2);
 
-	//#pragma omp parallel for private(links, rechts, mitte, oben, unten, rightHandSide, erg1, erg2)
+	#pragma omp parallel for private(links, rechts, mitte, oben, unten, rightHandSide, erg1, erg2)
 	for (int i = 1; i < n - 1; i++) {
 
 		res(1, i) = ((u(0, i) + u(2, i)) + (u(1, i - 1) + u(1, i + 1))
 				- (4 * u(1, i))) / (h * h) + f(1, i);
-				
-		links = _mm_loadu_pd(&u(1, i));
-		rechts = _mm_loadu_pd(&u(3, i));
-		erg1 = _mm_add_pd(links, rechts);
 
-		oben = _mm_loadu_pd(&u(2, i + 1));
-		unten = _mm_loadu_pd(&u(2, i - 1));
-		erg2 = _mm_add_pd(unten, oben);
-
-		erg1 = _mm_add_pd(erg1, erg2);
-
-		mitte = _mm_loadu_pd(&u(2, i));
-		mitte = _mm_mul_pd(mitte, const4);
-		erg2 = _mm_sub_pd(erg1, mitte);
-
-		erg1 = _mm_div_pd(erg2, meshsize);
-		rightHandSide = _mm_loadu_pd(&f(2, i));
-		erg1 = _mm_add_pd(erg1, rightHandSide);
-
-		_mm_stream_pd(&res(2, i), erg1); 
-
-		for (int k = 4; k < n - 1; k = k + 4) {
+		for (int k = 2; k < n - 1; k = k + 2) {
 
 			links = _mm_loadu_pd(&u(k - 1, i));
 			rechts = _mm_loadu_pd(&u(k + 1, i));
@@ -162,32 +142,10 @@ void residual(int n, grid<type> &u, grid<type> &f, grid<type> &res, double h) {
 			erg1 = _mm_add_pd(erg1, rightHandSide);
 
 			_mm_stream_pd(&res(k, i), erg1); 
-			
-			
-			
-			links = _mm_loadu_pd(&u(k + 1, i));
-			rechts = _mm_loadu_pd(&u(k + 3, i));
-			erg1 = _mm_add_pd(links, rechts);
-
-			oben = _mm_loadu_pd(&u(k+2, i + 1));
-			unten = _mm_loadu_pd(&u(k+2, i - 1));
-			erg2 = _mm_add_pd(unten, oben);
-
-			erg1 = _mm_add_pd(erg1, erg2);
-
-			mitte = _mm_loadu_pd(&u(k+2, i));
-			mitte = _mm_mul_pd(mitte, const4);
-			erg2 = _mm_sub_pd(erg1, mitte);
-
-			erg1 = _mm_div_pd(erg2, meshsize);
-			rightHandSide = _mm_loadu_pd(&f(k+2, i));
-			erg1 = _mm_add_pd(erg1, rightHandSide);
-
-			_mm_stream_pd(&res(k+2, i), erg1); 
-
 		}
 	}
 }
+
 
 // restrict a grid (from) with the full weighting stencile to another grid (to). From has size nx[l] and to has size nx[l-1].
 void coarsening(int l, grid<type>& from, grid<type>& to, intVec& n) {
@@ -207,6 +165,104 @@ void coarsening(int l, grid<type>& from, grid<type>& to, intVec& n) {
 		}
 	}
 }
+
+/*
+// restrict a grid (from) with the full weighting stencile to another grid (to). From has size nx[l] and to has size nx[l-1].
+void coarsening(int l, grid<type>& from, grid<type>& to, intVec& n) {
+
+  
+  __m128d const2 = _mm_set_pd(2, 2);
+  __m128d const4 = _mm_set_pd(4, 4);
+  __m128d const1over16 = _mm_set_pd(0.0625, 0.0625);
+ // __m128d reg1, reg2, reg3, reg4, reg5;
+   __m128d reg1, reg2, reg3, reg4, reg5, reg6, reg7, reg8, reg9, erg;
+   
+  //#pragma omp parallel for private(reg1, reg2, reg3, reg4, reg5)
+	for (int i = 1; i < n[l - 1] - 1; i++) {
+	  				to(1, i) = (from(1, 2 * i + 1)
+						+ 2 * from(2, 2 * i + 1)
+						+ from(3, 2 * i + 1)
+						+ 2 * from(1, 2 * i) + 4 * from(2, 2 * i)
+						+ 2 * from(3, 2 * i)
+						+ from(1, 2 * i - 1)
+						+ 2 * from(2, 2 * i - 1)
+						+ from(3, 2 * i - 1)) / 16.0;
+					
+		for (int j = 2; j < n[l - 1] - 1; j= j + 2) {
+			if (!(i == n[l - 1] / 2  && j >= n[l - 1] / 2 )) {
+			  
+			  reg1 = _mm_loadu_pd(&from(2 * j - 1,  2 * i + 1));
+			  reg2 = _mm_loadu_pd(&from(2 * j, 	2 * i + 1));
+			  reg3 = _mm_loadu_pd(&from(2 * j + 1,  2 * i + 1));
+			  reg4 = _mm_loadu_pd(&from(2 * j - 1,  2 * i));
+			  reg5 = _mm_loadu_pd(&from(2 * j,      2 * i));
+			  reg6 = _mm_loadu_pd(&from(2 * j + 1,  2 * i));
+			  reg7 = _mm_loadu_pd(&from(2 * j - 1,  2 * i - 1));
+			  reg8 = _mm_loadu_pd(&from(2 * j,      2 * i - 1));
+			  reg9 = _mm_loadu_pd(&from(2 * j + 1,  2 * i - 1));
+			  
+			  reg2 = _mm_mul_pd(reg2, const2);			
+			  reg4 = _mm_mul_pd(reg4, const2);			
+			  reg6 = _mm_mul_pd(reg6, const2);			
+			  reg8 = _mm_mul_pd(reg8, const2);	
+			  
+			  reg5 = _mm_mul_pd(reg5, const4);
+			  
+			  erg = _mm_add_pd(reg1, reg2);
+			  erg = _mm_add_pd(erg, reg3);
+			  erg = _mm_add_pd(erg, reg4);
+			  erg = _mm_add_pd(erg, reg5);
+			  erg = _mm_add_pd(erg, reg6);
+			  erg = _mm_add_pd(erg, reg7);
+			  erg = _mm_add_pd(erg, reg8);
+			  erg = _mm_add_pd(erg, reg9);
+				
+			  erg = _mm_mul_pd(erg, const1over16);
+				
+			  _mm_stream_pd(&to(j, i), erg); 
+			  
+			  	reg1 = _mm_loadu_pd(&from(2 * j - 1, 2 * i + 1));	// links-oben
+				reg2 = _mm_loadu_pd(&from(2 * j, 2 * i + 1));		// oben
+			  
+				reg3 = _mm_mul_pd(reg2, const2);			// oben x 2
+				reg4 = _mm_add_pd(reg3, reg1);				// links-oben + 2x oben
+			  
+				reg5 = _mm_loadu_pd(&from(2 * j + 1, 2 * i + 1));	// rechts-oben
+				reg2 = _mm_add_pd(reg4, reg5);				// links-oben + 2x oben
+				
+				reg1 = _mm_loadu_pd(&from(2 * j - 1, 2 * i));		// links
+				reg3 = _mm_mul_pd(reg1, const2);			// links x2
+				reg1 = _mm_loadu_pd(&from(2 * j, 2 * i));		// mitte
+				reg4 = _mm_mul_pd(reg1, const4);			// mitte x4
+				reg1 = _mm_add_pd(reg4, reg3);				// mitte x4 + links x2
+				reg3 = _mm_add_pd(reg1, reg2);				// links-oben + 2x oben + mitte x4 + links x2
+				
+				reg1 = _mm_loadu_pd(&from(2 * j + 1, 2 * i));		// rechts
+				reg2 = _mm_loadu_pd(&from(2 * j - 1, 2 * i - 1));		// links-unten
+			  
+				reg4 = _mm_mul_pd(reg1, const2);			// rechts x 2
+				reg1 = _mm_add_pd(reg4, reg2);				// links-unten + 2x rechts
+				
+				
+				reg2 = _mm_loadu_pd(&from(2 * j, 2 * i - 1));		// unten
+				reg5 = _mm_loadu_pd(&from(2 * j + 1, 2 * i - 1));		// rechts-unten
+			  
+				reg4 = _mm_mul_pd(reg2, const2);			// unten x 2
+				reg2 = _mm_add_pd(reg5, reg4);				// rechts-unten + 2x unten
+				
+				reg5 = _mm_add_pd(reg1, reg2);				// rechts-unten + 2x unten + links-unten + 2x rechts
+				
+				reg1 = _mm_add_pd(reg3, reg5);	
+				
+				reg2 = _mm_mul_pd(reg1, const1over16);
+				
+				_mm_stream_pd(&to(j, i), reg2); 
+				
+			}
+		}
+	}
+}
+*/
 
 void interpolation(int l, grid<type>& from, grid<type>& to, intVec& n) {
 
@@ -240,6 +296,7 @@ void Red_Black_Gauss(int n, grid<type> &u, grid<type> &f, double h,
 		int numIterations) {
 
 	for (int iterations = 0; iterations < numIterations; iterations++) {
+	  #pragma omp parallel for
 		for (int m = 1; m < n - 1; m++) {
 			int q = 1;
 			if (m % 2 == 0) {
@@ -254,6 +311,7 @@ void Red_Black_Gauss(int n, grid<type> &u, grid<type> &f, double h,
 				}
 			}
 		}
+		#pragma omp parallel for
 		for (int m = 1; m < n - 1; m++) {
 			int q = 1;
 			if (m % 2 != 0) {
@@ -275,7 +333,7 @@ void Red_Black_Gauss(int n, grid<type> &u, grid<type> &f, double h,
 //Parameter "finest" wird fuer die Neuman-RB (GHOST) benoetigt. Damit wird nur beim feinsten Grid die Neumann-RB im Red-Black-Gauss berechnet
 void solveMG(int l, std::vector<grid<type>>& u, std::vector<grid<type>>& f,
 		intVec& n, std::vector<type>& h, std::vector<grid<type>>& res, int v1 =
-                2, int v2 = 1, int gamma = 2) {
+                3, int v2 = 2, int gamma = 2) {
 
     std::ofstream messung;
     messung.open("Messausgabe.txt");
@@ -457,7 +515,7 @@ int main(int argc, char **argv) {
 	struct timeval t0, t;
 	gettimeofday(&t0, NULL);
     //Red_Black_Gauss( n[l-1], u[l-1], f[l-1], h[l-1], 10000);
-    for(int i = 0; i < 5; i++){
+    for(int i = 0; i < 15; i++){
         solveMG(l - 1, u, f, n, h, res);
     }
 	gettimeofday(&t, NULL);
