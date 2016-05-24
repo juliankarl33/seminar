@@ -67,6 +67,15 @@ public:
 
 //___________________________________________________________________________________________________________________
 
+
+void print_time(std::string text, struct timeval t0, struct timeval t1, int level, std::ostream& file){
+    file << "Wall clock time of " << text << "\t \t \t"
+            << ((int64_t) (t1.tv_sec - t0.tv_sec) * (int64_t) 1000000
+                    + (int64_t) t1.tv_usec - (int64_t) t0.tv_usec) * 1e-3
+            << " ms" << "\t" <<", level: " << level << std::endl;
+}
+
+
 // calculates the l2-norm of the residual
 double residuum(int n, grid<type> &u, grid<type> &f, double h) {
 	double residuum = 0.0;
@@ -184,18 +193,32 @@ void solveMG(int l, std::vector<grid<type>>& u, std::vector<grid<type>>& f,
 		intVec& n, std::vector<type>& h, std::vector<grid<type>>& res, int v1 =
                 2, int v2 = 1, int gamma = 2) {
 
+    std::ofstream messung;
+    messung.open("Messausgabe.txt");
+    struct timeval t0, t1, t2, t3, t4, t5, t6, t7, t8, t9, t10;
+    gettimeofday(&t0, NULL);
+
 	//Presmoothing
 	Red_Black_Gauss(n[l], u[l], f[l], h[l], v1);
+
+    gettimeofday(&t1, NULL);
+
 
 	// Residuum
 	residual(n[l], u[l], f[l], res[l], h[l]);
 
+    gettimeofday(&t2, NULL);
+
 	// restrict residual
 	coarsening(l, res[l], f[l - 1], n);
+
+    gettimeofday(&t3, NULL);
 
 	if (l <= 1) {
 		// solve
 		Red_Black_Gauss(n[l - 1], u[l - 1], f[l - 1], h[l - 1], 1);
+        gettimeofday(&t4, NULL);
+        print_time("RBGauss solve ", t3, t4, l, messung);
 
 	} else {
 		for (int i = 1; i < n[l - 1] - 1; i++) {
@@ -203,13 +226,17 @@ void solveMG(int l, std::vector<grid<type>>& u, std::vector<grid<type>>& f,
 				u[l - 1](j, i) = 0.0;
 			}
 		}
+        gettimeofday(&t5, NULL);
 		for (int i = 0; i < gamma; i++) {
 			solveMG(l - 1, u, f, n, h, res, v1, v2, gamma);
 		}
 
+
 		// interpolation
 		grid<type> correction(n[l], n[l], 0.0);
+        gettimeofday(&t6, NULL);
 		interpolation(l, u[l - 1], correction, n);
+        gettimeofday(&t7, NULL);
 
 		// correction
 		for (int i = 1; i < n[l] - 1; i++) {
@@ -217,11 +244,26 @@ void solveMG(int l, std::vector<grid<type>>& u, std::vector<grid<type>>& f,
 				u[l](j, i) += correction(j, i);
 			}
 		}
+        gettimeofday(&t8, NULL);
 	}
 
+    gettimeofday(&t9, NULL);
 	//Postsmothing
 	Red_Black_Gauss(n[l], u[l], f[l], h[l], v2);
+    gettimeofday(&t10, NULL);
+
+    if(l == 10){
+        print_time("RBGauss presmoothing ", t0, t1, l, messung);
+        print_time("Residuum ", t1, t2, l, messung);
+        print_time("Restrict residual ", t2, t3, l, messung);
+        print_time("set u = 0 ", t3, t5, l, messung);
+        print_time("interpolation ", t6, t7, l, messung);
+        print_time("correction ", t7, t8, l, messung);
+        print_time("RBGauss postsmoothing ", t9, t10, l, messung);
+    }
 }
+
+
 
 int main(int argc, char **argv) {
 
