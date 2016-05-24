@@ -1,0 +1,9 @@
+Initiale Messung ohne Optimierungen in ms:
+v(2,1) cycle, l=11, L2 residual: 52.3939, L2 residual: 52.3939
+RBGauss Pre:		34.641
+Residuum: 		18.688
+Restrict Residual:	5.748
+set u=0:		0.632
+Interpolation: 		12.233
+Correction:		5.505
+RBGauss Post:	15.895
