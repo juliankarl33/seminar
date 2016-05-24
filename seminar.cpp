@@ -162,9 +162,7 @@ void residual(int n, grid<type> &u, grid<type> &f, grid<type> &res, double h) {
 			erg1 = _mm_add_pd(erg1, rightHandSide);
 
 			_mm_stream_pd(&res(k, i), erg1); 
-			
-			
-			
+
 			links = _mm_loadu_pd(&u(k + 1, i));
 			rechts = _mm_loadu_pd(&u(k + 3, i));
 			erg1 = _mm_add_pd(links, rechts);
@@ -496,14 +494,14 @@ int main(int argc, char **argv) {
         for(int j = 0; j < n[l-1]; j++){
             u[l-1](i,j)=0.0;
         }
-     }
+    }
 
     Red_Black_Gauss(n[l-1], u[l-1], res[l-1], h[l-1], 1000);
     for(int i = 0; i< n[l-1]; i++){
         for(int j = 0; j < n[l-1]; j++){
             error += u[l-1](i,j)*u[l-1](i,j);
         }
-     }
+    }
 
      std::cout << "L2 error: " << sqrt( error/(n[l-1]-1)*(n[l-1]-1)) << std::endl;
 

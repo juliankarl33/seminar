@@ -1,9 +1,23 @@
 Initiale Messung ohne Optimierungen in ms:
-v(2,1) cycle, l=11, L2 residual: 52.3939, L2 residual: 52.3939
+v(2,1) cycle, l=11, 5 zyklen
+L2 residual: 		52.3939
+error:	 		6.23193e-06
 RBGauss Pre:		34.641
 Residuum: 		18.688
 Restrict Residual:	5.748
 set u=0:		0.632
 Interpolation: 		12.233
 Correction:		5.505
-RBGauss Post:	15.895
+RBGauss Post:		15.895
+
+2. Messung mit Optimierungen in ms: Residual(Memory-alignment)(langsamer PC)
+v(2,1) cycle, l=11, 5 zyklen
+L2 residual: 		52.3939
+error: 			6.23193e-06
+RBGauss Pre:		58.004
+Residuum: 		15.212
+Restrict Residual:	7.988
+set u=0:		0.764
+Interpolation: 		21.654
+Correction:		8.066
+RBGauss Post:		29.692
