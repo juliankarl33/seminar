@@ -330,10 +330,11 @@ void Red_Black_Gauss(int n, grid<type> &u, grid<type> &f, double h,
 
 }
 
+/*
+
 //Parameter "finest" wird fuer die Neuman-RB (GHOST) benoetigt. Damit wird nur beim feinsten Grid die Neumann-RB im Red-Black-Gauss berechnet
 void solveMG(int l, std::vector<grid<type>>& u, std::vector<grid<type>>& f,
-		intVec& n, std::vector<type>& h, std::vector<grid<type>>& res, int v1 =
-                3, int v2 = 2, int gamma = 2) {
+		intVec& n, std::vector<type>& h, std::vector<grid<type>>& res, int v1=2, int v2=1, int gamma=1) {
 
     std::ofstream messung;
     messung.open("Messausgabe.txt");
@@ -407,18 +408,80 @@ void solveMG(int l, std::vector<grid<type>>& u, std::vector<grid<type>>& f,
     messung.close();
 }
 
+*/
+
+void solveMG(int l, std::vector<grid<type>>& u, std::vector<grid<type>>& f,
+             intVec& n, std::vector<type>& h, std::vector<grid<type>>& res, int v1, int v2, int gamma) {
+    
+
+    
+    //Presmoothing
+    Red_Black_Gauss(n[l], u[l], f[l], h[l], v1);
+    
+    // Residuum
+    residual(n[l], u[l], f[l], res[l], h[l]);
+
+    // restrict residual
+    coarsening(l, res[l], f[l - 1], n);
+    
+    if (l <= 1) {
+        // solve
+        Red_Black_Gauss(n[l - 1], u[l - 1], f[l - 1], h[l - 1], 1);
+        
+    } else {
+        for (int i = 1; i < n[l - 1] - 1; i++) {
+            for (int j = 1; j < n[l - 1] - 1; j++) {
+                u[l - 1](j, i) = 0.0;
+            }
+        }
+        for (int i = 0; i < gamma; i++) {
+            solveMG(l - 1, u, f, n, h, res, v1, v2, gamma);
+        }
+        
+        
+        // interpolation
+        grid<type> correction(n[l], n[l], 0.0);
+        interpolation(l, u[l - 1], correction, n);
+        
+        // correction
+        for (int i = 1; i < n[l] - 1; i++) {
+            for (int j = 1; j < n[l] - 1; j++) {
+                u[l](j, i) += correction(j, i);
+            }
+        }
+
+    }
+    
+
+    //Postsmothing
+    Red_Black_Gauss(n[l], u[l], f[l], h[l], v2);
+    
+}
 
 
 int main(int argc, char **argv) {
 
+    
+    int l;
+    int v1 = 2;
+    int v2 = 1;
+    int gamma = 1;
+    int cycle = 5;
+    
 	// Ueberpruefung, ob Eingabeparamter passen
-	if (argc != 2) {
-		fprintf(stderr, "Usage: ./mgsolve levels\n");
-		exit(EXIT_SUCCESS);
-	}
-
-	// definitions
-	int l = atoi(argv[1]);	// number of levels
+    if(argc == 2){
+        l = atoi(argv[1]);
+    }
+    else if (argc == 6){
+        l = atoi(argv[1]);
+        v1 = atoi(argv[2]);
+        v2 = atoi(argv[3]);
+        gamma = atoi(argv[4]);
+        cycle = atoi(argv[5]);
+    }else{
+        fprintf(stderr, "Usage: ./mgsolve levels\n");
+        exit(EXIT_SUCCESS);
+    }
 
 	intVec n(l, 0);	// total number of gird points in x and y-direction
 	typeVec h(l, 0.0);// mesh size of each levels, where h[0] is the mesh size of the coarsesed grid
@@ -517,8 +580,8 @@ int main(int argc, char **argv) {
 	struct timeval t0, t;
 	gettimeofday(&t0, NULL);
     //Red_Black_Gauss( n[l-1], u[l-1], f[l-1], h[l-1], 10000);
-    for(int i = 0; i < 15; i++){
-        solveMG(l - 1, u, f, n, h, res);
+    for(int i = 0; i < cycle; i++){
+        solveMG(l - 1, u, f, n, h, res, v1, v2, gamma);
     }
 	gettimeofday(&t, NULL);
 	std::cout << "Wall clock time of MG execution: "
@@ -532,7 +595,7 @@ int main(int argc, char **argv) {
 
 
 
-    std::cout << "L2 residual: " << residuum(n[l-1],  u[l-1], f[l-1], h[l-1]) << std::endl;
+    std::cout << "L2 residual: "  << residuum(n[l-1],  u[l-1], f[l-1], h[l-1]) << std::endl;
 
 
 	std::ofstream out;
@@ -565,6 +628,6 @@ int main(int argc, char **argv) {
         }
     }
 
-     std::cout << "L2 error: " << sqrt( error/(n[l-1]-1)*(n[l-1]-1)) << std::endl;
+    std::cout << std::fixed << "L2 error: " << std::fixed << sqrt( error/(n[l-1]-1)*(n[l-1]-1)) << std::endl;
 
 }
