@@ -72,10 +72,9 @@ public:
 
 
 void print_time(std::string text, struct timeval t0, struct timeval t1, int level, std::ostream& file){
-    file << "Wall clock time of " << text << "\t \t \t"
+    file << "Wall clock time of " << text << "\t \t"
             << ((int64_t) (t1.tv_sec - t0.tv_sec) * (int64_t) 1000000
-                    + (int64_t) t1.tv_usec - (int64_t) t0.tv_usec) * 1e-3
-            << " ms" << "\t" <<", level: " << level << std::endl;
+                    + (int64_t) t1.tv_usec - (int64_t) t0.tv_usec) * 1e-3 << std::endl;
 }
 
 
@@ -281,7 +280,7 @@ void solveMG(int l, std::vector<grid<type>>& u, std::vector<grid<type>>& f,
     gettimeofday(&t0, NULL);
 
 	//Presmoothing
-	Red_Black_Gauss(n[l], u[l], f[l], h[l], v1);
+    Red_Black_Gauss(n[l], u[l], f[l], h[l], v1);
 
     gettimeofday(&t1, NULL);
 
@@ -298,7 +297,7 @@ void solveMG(int l, std::vector<grid<type>>& u, std::vector<grid<type>>& f,
 
 	if (l <= 1) {
 		// solve
-		Red_Black_Gauss(n[l - 1], u[l - 1], f[l - 1], h[l - 1], 1);
+        Red_Black_Gauss(n[l - 1], u[l - 1], f[l - 1], h[l - 1], 1);
         gettimeofday(&t4, NULL);
         print_time("RBGauss solve ", t3, t4, l, messung);
 
@@ -331,17 +330,17 @@ void solveMG(int l, std::vector<grid<type>>& u, std::vector<grid<type>>& f,
 
     gettimeofday(&t9, NULL);
 	//Postsmothing
-	Red_Black_Gauss(n[l], u[l], f[l], h[l], v2);
+    Red_Black_Gauss(n[l], u[l], f[l], h[l], v2);
     gettimeofday(&t10, NULL);
 
     if(l == 10){
-        print_time("RBGauss presmoothing ", t0, t1, l, messung);
+        print_time("RBGauss Pre ", t0, t1, l, messung);
         print_time("Residuum ", t1, t2, l, messung);
-        print_time("Restrict residual ", t2, t3, l, messung);
+        print_time("Restrict Residual ", t2, t3, l, messung);
         print_time("set u = 0 ", t3, t5, l, messung);
-        print_time("interpolation ", t6, t7, l, messung);
-        print_time("correction ", t7, t8, l, messung);
-        print_time("RBGauss postsmoothing ", t9, t10, l, messung);
+        print_time("Interpolation ", t6, t7, l, messung);
+        print_time("Correction ", t7, t8, l, messung);
+        print_time("RBGauss Post ", t9, t10, l, messung);
     }
 }
 
