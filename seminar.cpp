@@ -94,7 +94,7 @@ double residuum(int n, grid<type> &u, grid<type> &f, double h) {
 	residuum = sqrt((1.0 / ((n - 1) * (n - 1))) * sum);
 	return residuum;
 }
-
+/*
 // calculates the residual
 void residual(int n, grid<type> &u, grid<type> &f, grid<type> &res, double h) {
 	for (int i = 1; i < n - 1; i++) {
@@ -107,8 +107,8 @@ void residual(int n, grid<type> &u, grid<type> &f, grid<type> &res, double h) {
 		}
 	}
 }
+*/
 
-/*
 void residual(int n, grid<type> &u, grid<type> &f, grid<type> &res, double h) {
 	double h2 = h * h;
 	__m128d links, rechts, mitte, oben, unten, rightHandSide, erg1, erg2;
@@ -120,8 +120,28 @@ void residual(int n, grid<type> &u, grid<type> &f, grid<type> &res, double h) {
 
 		res(1, i) = ((u(0, i) + u(2, i)) + (u(1, i - 1) + u(1, i + 1))
 				- (4 * u(1, i))) / (h * h) + f(1, i);
+				
+		links = _mm_loadu_pd(&u(1, i));
+		rechts = _mm_loadu_pd(&u(3, i));
+		erg1 = _mm_add_pd(links, rechts);
 
-		for (int k = 2; k < n - 1; k = k + 2) {
+		oben = _mm_loadu_pd(&u(2, i + 1));
+		unten = _mm_loadu_pd(&u(2, i - 1));
+		erg2 = _mm_add_pd(unten, oben);
+
+		erg1 = _mm_add_pd(erg1, erg2);
+
+		mitte = _mm_loadu_pd(&u(2, i));
+		mitte = _mm_mul_pd(mitte, const4);
+		erg2 = _mm_sub_pd(erg1, mitte);
+
+		erg1 = _mm_div_pd(erg2, meshsize);
+		rightHandSide = _mm_loadu_pd(&f(2, i));
+		erg1 = _mm_add_pd(erg1, rightHandSide);
+
+		_mm_stream_pd(&res(2, i), erg1); 
+
+		for (int k = 4; k < n - 1; k = k + 4) {
 
 			links = _mm_loadu_pd(&u(k - 1, i));
 			rechts = _mm_loadu_pd(&u(k + 1, i));
@@ -142,11 +162,33 @@ void residual(int n, grid<type> &u, grid<type> &f, grid<type> &res, double h) {
 			erg1 = _mm_add_pd(erg1, rightHandSide);
 
 			_mm_stream_pd(&res(k, i), erg1); 
+			
+			
+			
+			links = _mm_loadu_pd(&u(k + 1, i));
+			rechts = _mm_loadu_pd(&u(k + 3, i));
+			erg1 = _mm_add_pd(links, rechts);
+
+			oben = _mm_loadu_pd(&u(k+2, i + 1));
+			unten = _mm_loadu_pd(&u(k+2, i - 1));
+			erg2 = _mm_add_pd(unten, oben);
+
+			erg1 = _mm_add_pd(erg1, erg2);
+
+			mitte = _mm_loadu_pd(&u(k+2, i));
+			mitte = _mm_mul_pd(mitte, const4);
+			erg2 = _mm_sub_pd(erg1, mitte);
+
+			erg1 = _mm_div_pd(erg2, meshsize);
+			rightHandSide = _mm_loadu_pd(&f(k+2, i));
+			erg1 = _mm_add_pd(erg1, rightHandSide);
+
+			_mm_stream_pd(&res(k+2, i), erg1); 
 
 		}
 	}
 }
-*/
+
 // restrict a grid (from) with the full weighting stencile to another grid (to). From has size nx[l] and to has size nx[l-1].
 void coarsening(int l, grid<type>& from, grid<type>& to, intVec& n) {
 
