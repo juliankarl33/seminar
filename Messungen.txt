@@ -1,5 +1,5 @@
 Initiale Messung ohne Optimierungen in ms:
-v(2,1) cycle, l=11, 5 zyklen
+v(2,1) cycle, 1 Loesungsschritte, l=11, 5 zyklen
 L2 residual: 		52.3939
 error:	 		6.23193e-06
 RBGauss Pre:		34.641
@@ -11,7 +11,7 @@ Correction:		5.505
 RBGauss Post:		15.895
 
 2. Messung mit Optimierungen in ms: Residual(Memory-alignment)(langsamer PC)
-v(2,1) cycle, l=11, 5 zyklen
+v(2,1) cycle, 1 Loesungsschritte, l=11, 5 zyklen
 L2 residual: 		52.3939
 error: 			6.23193e-06
 RBGauss Pre:		58.004
@@ -21,3 +21,39 @@ set u=0:		0.764
 Interpolation: 		21.654
 Correction:		8.066
 RBGauss Post:		29.692
+
+2. Messung mit Optimierungen in ms: Residual(Memory-alignment)(langsamer PC)
+v(3,2) cycle, 2 Loesungsschritte, l=11, 5 zyklen
+L2 residual: 		52.3944
+error: 			1.54959e-06
+RBGauss Pre:		84.155
+Residuum: 		15.681
+Restrict Residual:	8.26
+set u=0:		0.802
+Interpolation: 		22.759
+Correction:		8.324
+RBGauss Post:		58.69
+
+2. Messung mit Optimierungen in ms: Residual(Memory-alignment)(langsamer PC)
+v(1,1) cycle, 1 Loesungsschritte, l=11, 5 zyklen
+L2 residual: 		50.567
+error: 			0.0614939
+RBGauss Pre 	 	27.198
+Residuum 	 	15.142
+Restrict Residual 	7.924
+set u = 0 	 	0.778
+Interpolation 	 	17.36
+Correction 	 	7.232
+RBGauss Post 	 	26.888
+
+2. Messung mit Optimierungen in ms: Residual(Memory-alignment)(langsamer PC)
+v(3,3) cycle, 1 Loesungsschritte, l=11, 5 zyklen
+L2 residual: 		52.2988
+error: 			0.00340936
+RBGauss Pre 	 	82.039
+Residuum 	 	15.078
+Restrict Residual 	7.904
+set u = 0 	 	0.792
+Interpolation 	 	17.392
+Correction 	 	7.295
+RBGauss Post 	 	81.631

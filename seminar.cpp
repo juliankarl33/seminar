@@ -72,7 +72,7 @@ public:
 
 
 void print_time(std::string text, struct timeval t0, struct timeval t1, int level, std::ostream& file){
-    file << "Wall clock time of " << text << "\t \t"
+    file << text << "\t \t"
             << ((int64_t) (t1.tv_sec - t0.tv_sec) * (int64_t) 1000000
                     + (int64_t) t1.tv_usec - (int64_t) t0.tv_usec) * 1e-3 << std::endl;
 }
@@ -342,6 +342,8 @@ void solveMG(int l, std::vector<grid<type>>& u, std::vector<grid<type>>& f,
         print_time("Correction ", t7, t8, l, messung);
         print_time("RBGauss Post ", t9, t10, l, messung);
     }
+
+    messung.close();
 }
 
 
