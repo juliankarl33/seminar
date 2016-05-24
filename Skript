@@ -8,12 +8,7 @@ ergebnis=0
 output=0
 time=0
 
-echo "v1" >> skript_ergebnisse.txt
-echo "v2" >> skript_ergebnisse.txt
-echo "gamma" >> skript_ergebnisse.txt
-echo "cycle" >> skript_ergebnisse.txt
-echo "ergebnis" >> skript_ergebnisse.txt
-echo "time" >> skript_ergebnisse.txt
+echo "v1, v2, gamma, cycle, L2 Error, time" >> skript_ergebnisse.txt
 echo " " >> skript_ergebnisse.txt
 
 for gamma in 1 2 3 4
@@ -29,16 +24,11 @@ do
                 cycle=$((cycle+1))
                 output=$(./seminar $level $v1 $v2 $gamma $cycle)
                 ergebnis=$(echo "$output" | grep "error" | awk '{ print $3 }' )
-                echo "ergebnis noch zu schlecht bei v1 $v1, v2 $v2, gamma $gamma, cycle $cycle, L2 Fehler $ergebnis, Zeit $time" >> skript_ergebnisse.txt
+                echo "$v1, $v2, $gamma, $cycle, $ergebnis, $time, ergebnis noch zu schlecht" >> skript_ergebnisse.txt
             done
             time=$(echo "$output" | grep "time" | awk '{ print $7 }' )
             echo " " >> skript_ergebnisse.txt
-            echo "$v1" >> skript_ergebnisse.txt
-            echo "$v2" >> skript_ergebnisse.txt
-            echo "$gamma" >> skript_ergebnisse.txt
-            echo "$cycle" >> skript_ergebnisse.txt
-            echo "$ergebnis" >> skript_ergebnisse.txt
-            echo "$time" >> skript_ergebnisse.txt
+            echo "$v1, $v2, $gamma, $cycle, $ergebnis, $time" >> skript_ergebnisse.txt
             echo " " >> skript_ergebnisse.txt
             cycle=1
         done
