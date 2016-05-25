@@ -446,7 +446,7 @@ void solveMG(int l, std::vector<grid<type>>& u, std::vector<grid<type>>& u_neu, 
             }
         }
         for (int i = 0; i < gamma; i++) {
-            solveMG(l - 1, u, /*u_neu,*/ f, n, h, res, v1, v2, gamma);
+            solveMG(l - 1, u, u_neu, f, n, h, res, v1, v2, gamma);
         }
         
         
