@@ -1,0 +1,615 @@
+v1, v2, gamma, cycle, L2 Error, time
+ 
+1, 1, 1, 2, 2.716439, 0, ergebnis noch zu schlecht
+1, 1, 1, 3, 0.390122, 0, ergebnis noch zu schlecht
+1, 1, 1, 4, 0.137682, 0, ergebnis noch zu schlecht
+1, 1, 1, 5, 0.061494, 0, ergebnis noch zu schlecht
+1, 1, 1, 6, 0.027263, 0, ergebnis noch zu schlecht
+1, 1, 1, 7, 0.011926, 0, ergebnis noch zu schlecht
+1, 1, 1, 8, 0.005173, 0, ergebnis noch zu schlecht
+1, 1, 1, 9, 0.002233, 0, ergebnis noch zu schlecht
+1, 1, 1, 10, 0.000961, 0, ergebnis noch zu schlecht
+1, 1, 1, 11, 0.000412, 0, ergebnis noch zu schlecht
+1, 1, 1, 12, 0.000177, 0, ergebnis noch zu schlecht
+1, 1, 1, 13, 0.000076, 0, ergebnis noch zu schlecht
+ 
+1, 1, 1, 13, 0.000076, 1034.19
+ 
+2, 1, 1, 2, 0.852089, 1034.19, ergebnis noch zu schlecht
+2, 1, 1, 3, 0.218291, 1034.19, ergebnis noch zu schlecht
+2, 1, 1, 4, 0.083213, 1034.19, ergebnis noch zu schlecht
+2, 1, 1, 5, 0.030477, 1034.19, ergebnis noch zu schlecht
+2, 1, 1, 6, 0.010864, 1034.19, ergebnis noch zu schlecht
+2, 1, 1, 7, 0.003818, 1034.19, ergebnis noch zu schlecht
+2, 1, 1, 8, 0.001331, 1034.19, ergebnis noch zu schlecht
+2, 1, 1, 9, 0.000462, 1034.19, ergebnis noch zu schlecht
+2, 1, 1, 10, 0.000160, 1034.19, ergebnis noch zu schlecht
+2, 1, 1, 11, 0.000055, 1034.19, ergebnis noch zu schlecht
+ 
+2, 1, 1, 11, 0.000055, 983.528
+ 
+3, 1, 1, 2, 0.573325, 983.528, ergebnis noch zu schlecht
+3, 1, 1, 3, 0.173592, 983.528, ergebnis noch zu schlecht
+3, 1, 1, 4, 0.058157, 983.528, ergebnis noch zu schlecht
+3, 1, 1, 5, 0.018500, 983.528, ergebnis noch zu schlecht
+3, 1, 1, 6, 0.005734, 983.528, ergebnis noch zu schlecht
+3, 1, 1, 7, 0.001754, 983.528, ergebnis noch zu schlecht
+3, 1, 1, 8, 0.000533, 983.528, ergebnis noch zu schlecht
+3, 1, 1, 9, 0.000162, 983.528, ergebnis noch zu schlecht
+3, 1, 1, 10, 0.000049, 983.528, ergebnis noch zu schlecht
+ 
+3, 1, 1, 10, 0.000049, 1004.77
+ 
+4, 1, 1, 2, 0.474874, 1004.77, ergebnis noch zu schlecht
+4, 1, 1, 3, 0.144851, 1004.77, ergebnis noch zu schlecht
+4, 1, 1, 4, 0.043580, 1004.77, ergebnis noch zu schlecht
+4, 1, 1, 5, 0.012443, 1004.77, ergebnis noch zu schlecht
+4, 1, 1, 6, 0.003468, 1004.77, ergebnis noch zu schlecht
+4, 1, 1, 7, 0.000955, 1004.77, ergebnis noch zu schlecht
+4, 1, 1, 8, 0.000262, 1004.77, ergebnis noch zu schlecht
+4, 1, 1, 9, 0.000072, 1004.77, ergebnis noch zu schlecht
+ 
+4, 1, 1, 9, 0.000072, 1012.08
+ 
+5, 1, 1, 2, 0.425008, 1012.08, ergebnis noch zu schlecht
+5, 1, 1, 3, 0.124711, 1012.08, ergebnis noch zu schlecht
+5, 1, 1, 4, 0.034312, 1012.08, ergebnis noch zu schlecht
+5, 1, 1, 5, 0.008970, 1012.08, ergebnis noch zu schlecht
+5, 1, 1, 6, 0.002293, 1012.08, ergebnis noch zu schlecht
+5, 1, 1, 7, 0.000580, 1012.08, ergebnis noch zu schlecht
+5, 1, 1, 8, 0.000146, 1012.08, ergebnis noch zu schlecht
+5, 1, 1, 9, 0.000037, 1012.08, ergebnis noch zu schlecht
+ 
+5, 1, 1, 9, 0.000037, 1133.89
+ 
+1, 2, 1, 2, 0.854887, 1133.89, ergebnis noch zu schlecht
+1, 2, 1, 3, 0.141515, 1133.89, ergebnis noch zu schlecht
+1, 2, 1, 4, 0.050178, 1133.89, ergebnis noch zu schlecht
+1, 2, 1, 5, 0.017998, 1133.89, ergebnis noch zu schlecht
+1, 2, 1, 6, 0.006342, 1133.89, ergebnis noch zu schlecht
+1, 2, 1, 7, 0.002213, 1133.89, ergebnis noch zu schlecht
+1, 2, 1, 8, 0.000768, 1133.89, ergebnis noch zu schlecht
+1, 2, 1, 9, 0.000265, 1133.89, ergebnis noch zu schlecht
+1, 2, 1, 10, 0.000092, 1133.89, ergebnis noch zu schlecht
+1, 2, 1, 11, 0.000032, 1133.89, ergebnis noch zu schlecht
+ 
+1, 2, 1, 11, 0.000032, 997.249
+ 
+2, 2, 1, 2, 0.443687, 997.249, ergebnis noch zu schlecht
+2, 2, 1, 3, 0.106160, 997.249, ergebnis noch zu schlecht
+2, 2, 1, 4, 0.033452, 997.249, ergebnis noch zu schlecht
+2, 2, 1, 5, 0.010153, 997.249, ergebnis noch zu schlecht
+2, 2, 1, 6, 0.003016, 997.249, ergebnis noch zu schlecht
+2, 2, 1, 7, 0.000886, 997.249, ergebnis noch zu schlecht
+2, 2, 1, 8, 0.000259, 997.249, ergebnis noch zu schlecht
+2, 2, 1, 9, 0.000075, 997.249, ergebnis noch zu schlecht
+ 
+2, 2, 1, 9, 0.000075, 923.67
+ 
+3, 2, 1, 2, 0.345056, 923.67, ergebnis noch zu schlecht
+3, 2, 1, 3, 0.087845, 923.67, ergebnis noch zu schlecht
+3, 2, 1, 4, 0.024822, 923.67, ergebnis noch zu schlecht
+3, 2, 1, 5, 0.006714, 923.67, ergebnis noch zu schlecht
+3, 2, 1, 6, 0.001776, 923.67, ergebnis noch zu schlecht
+3, 2, 1, 7, 0.000465, 923.67, ergebnis noch zu schlecht
+3, 2, 1, 8, 0.000121, 923.67, ergebnis noch zu schlecht
+3, 2, 1, 9, 0.000031, 923.67, ergebnis noch zu schlecht
+ 
+3, 2, 1, 9, 0.000031, 1011.56
+ 
+4, 2, 1, 2, 0.296779, 1011.56, ergebnis noch zu schlecht
+4, 2, 1, 3, 0.075417, 1011.56, ergebnis noch zu schlecht
+4, 2, 1, 4, 0.019486, 1011.56, ergebnis noch zu schlecht
+4, 2, 1, 5, 0.004811, 1011.56, ergebnis noch zu schlecht
+4, 2, 1, 6, 0.001162, 1011.56, ergebnis noch zu schlecht
+4, 2, 1, 7, 0.000278, 1011.56, ergebnis noch zu schlecht
+4, 2, 1, 8, 0.000066, 1011.56, ergebnis noch zu schlecht
+ 
+4, 2, 1, 8, 0.000066, 993.472
+ 
+5, 2, 1, 2, 0.268413, 993.472, ergebnis noch zu schlecht
+5, 2, 1, 3, 0.066433, 993.472, ergebnis noch zu schlecht
+5, 2, 1, 4, 0.015917, 993.472, ergebnis noch zu schlecht
+5, 2, 1, 5, 0.003642, 993.472, ergebnis noch zu schlecht
+5, 2, 1, 6, 0.000816, 993.472, ergebnis noch zu schlecht
+5, 2, 1, 7, 0.000181, 993.472, ergebnis noch zu schlecht
+5, 2, 1, 8, 0.000040, 993.472, ergebnis noch zu schlecht
+ 
+5, 2, 1, 8, 0.000040, 1101.05
+ 
+1, 3, 1, 2, 0.455947, 1101.05, ergebnis noch zu schlecht
+1, 3, 1, 3, 0.083165, 1101.05, ergebnis noch zu schlecht
+1, 3, 1, 4, 0.026022, 1101.05, ergebnis noch zu schlecht
+1, 3, 1, 5, 0.008024, 1101.05, ergebnis noch zu schlecht
+1, 3, 1, 6, 0.002437, 1101.05, ergebnis noch zu schlecht
+1, 3, 1, 7, 0.000734, 1101.05, ergebnis noch zu schlecht
+1, 3, 1, 8, 0.000220, 1101.05, ergebnis noch zu schlecht
+1, 3, 1, 9, 0.000066, 1101.05, ergebnis noch zu schlecht
+ 
+1, 3, 1, 9, 0.000066, 926.339
+ 
+2, 3, 1, 2, 0.298335, 926.339, ergebnis noch zu schlecht
+2, 3, 1, 3, 0.066224, 926.339, ergebnis noch zu schlecht
+2, 3, 1, 4, 0.018301, 926.339, ergebnis noch zu schlecht
+2, 3, 1, 5, 0.004889, 926.339, ergebnis noch zu schlecht
+2, 3, 1, 6, 0.001282, 926.339, ergebnis noch zu schlecht
+2, 3, 1, 7, 0.000333, 926.339, ergebnis noch zu schlecht
+2, 3, 1, 8, 0.000086, 926.339, ergebnis noch zu schlecht
+ 
+2, 3, 1, 8, 0.000086, 900.86
+ 
+3, 3, 1, 2, 0.246860, 900.86, ergebnis noch zu schlecht
+3, 3, 1, 3, 0.056217, 900.86, ergebnis noch zu schlecht
+3, 3, 1, 4, 0.014115, 900.86, ergebnis noch zu schlecht
+3, 3, 1, 5, 0.003409, 900.86, ergebnis noch zu schlecht
+3, 3, 1, 6, 0.000808, 900.86, ergebnis noch zu schlecht
+3, 3, 1, 7, 0.000190, 900.86, ergebnis noch zu schlecht
+3, 3, 1, 8, 0.000044, 900.86, ergebnis noch zu schlecht
+ 
+3, 3, 1, 8, 0.000044, 1000.54
+ 
+4, 3, 1, 2, 0.217687, 1000.54, ergebnis noch zu schlecht
+4, 3, 1, 3, 0.049221, 1000.54, ergebnis noch zu schlecht
+4, 3, 1, 4, 0.011424, 1000.54, ergebnis noch zu schlecht
+4, 3, 1, 5, 0.002545, 1000.54, ergebnis noch zu schlecht
+4, 3, 1, 6, 0.000556, 1000.54, ergebnis noch zu schlecht
+4, 3, 1, 7, 0.000120, 1000.54, ergebnis noch zu schlecht
+4, 3, 1, 8, 0.000026, 1000.54, ergebnis noch zu schlecht
+ 
+4, 3, 1, 8, 0.000026, 1116.73
+ 
+5, 3, 1, 2, 0.199133, 1116.73, ergebnis noch zu schlecht
+5, 3, 1, 3, 0.044027, 1116.73, ergebnis noch zu schlecht
+5, 3, 1, 4, 0.009557, 1116.73, ergebnis noch zu schlecht
+5, 3, 1, 5, 0.001989, 1116.73, ergebnis noch zu schlecht
+5, 3, 1, 6, 0.000406, 1116.73, ergebnis noch zu schlecht
+5, 3, 1, 7, 0.000082, 1116.73, ergebnis noch zu schlecht
+ 
+5, 3, 1, 7, 0.000082, 1055.95
+ 
+1, 4, 1, 2, 0.298169, 1055.95, ergebnis noch zu schlecht
+1, 4, 1, 3, 0.056512, 1055.95, ergebnis noch zu schlecht
+1, 4, 1, 4, 0.015872, 1055.95, ergebnis noch zu schlecht
+1, 4, 1, 5, 0.004372, 1055.95, ergebnis noch zu schlecht
+1, 4, 1, 6, 0.001189, 1055.95, ergebnis noch zu schlecht
+1, 4, 1, 7, 0.000321, 1055.95, ergebnis noch zu schlecht
+1, 4, 1, 8, 0.000086, 1055.95, ergebnis noch zu schlecht
+ 
+1, 4, 1, 8, 0.000086, 977.401
+ 
+2, 4, 1, 2, 0.221264, 977.401, ergebnis noch zu schlecht
+2, 4, 1, 3, 0.046434, 977.401, ergebnis noch zu schlecht
+2, 4, 1, 4, 0.011598, 977.401, ergebnis noch zu schlecht
+2, 4, 1, 5, 0.002808, 977.401, ergebnis noch zu schlecht
+2, 4, 1, 6, 0.000669, 977.401, ergebnis noch zu schlecht
+2, 4, 1, 7, 0.000158, 977.401, ergebnis noch zu schlecht
+2, 4, 1, 8, 0.000037, 977.401, ergebnis noch zu schlecht
+ 
+2, 4, 1, 8, 0.000037, 1039.96
+ 
+3, 4, 1, 2, 0.190591, 1039.96, ergebnis noch zu schlecht
+3, 4, 1, 3, 0.040169, 1039.96, ergebnis noch zu schlecht
+3, 4, 1, 4, 0.009199, 1039.96, ergebnis noch zu schlecht
+3, 4, 1, 5, 0.002034, 1039.96, ergebnis noch zu schlecht
+3, 4, 1, 6, 0.000442, 1039.96, ergebnis noch zu schlecht
+3, 4, 1, 7, 0.000095, 1039.96, ergebnis noch zu schlecht
+3, 4, 1, 8, 0.000020, 1039.96, ergebnis noch zu schlecht
+ 
+3, 4, 1, 8, 0.000020, 1101
+ 
+4, 4, 1, 2, 0.171546, 1101, ergebnis noch zu schlecht
+4, 4, 1, 3, 0.035686, 1101, ergebnis noch zu schlecht
+4, 4, 1, 4, 0.007611, 1101, ergebnis noch zu schlecht
+4, 4, 1, 5, 0.001563, 1101, ergebnis noch zu schlecht
+4, 4, 1, 6, 0.000316, 1101, ergebnis noch zu schlecht
+4, 4, 1, 7, 0.000063, 1101, ergebnis noch zu schlecht
+ 
+4, 4, 1, 7, 0.000063, 1049.95
+ 
+5, 4, 1, 2, 0.158684, 1049.95, ergebnis noch zu schlecht
+5, 4, 1, 3, 0.032282, 1049.95, ergebnis noch zu schlecht
+5, 4, 1, 4, 0.006479, 1049.95, ergebnis noch zu schlecht
+5, 4, 1, 5, 0.001250, 1049.95, ergebnis noch zu schlecht
+5, 4, 1, 6, 0.000237, 1049.95, ergebnis noch zu schlecht
+5, 4, 1, 7, 0.000045, 1049.95, ergebnis noch zu schlecht
+ 
+5, 4, 1, 7, 0.000045, 1149.12
+ 
+1, 5, 1, 2, 0.217639, 1149.12, ergebnis noch zu schlecht
+1, 5, 1, 3, 0.041616, 1149.12, ergebnis noch zu schlecht
+1, 5, 1, 4, 0.010683, 1149.12, ergebnis noch zu schlecht
+1, 5, 1, 5, 0.002687, 1149.12, ergebnis noch zu schlecht
+1, 5, 1, 6, 0.000669, 1149.12, ergebnis noch zu schlecht
+1, 5, 1, 7, 0.000165, 1149.12, ergebnis noch zu schlecht
+1, 5, 1, 8, 0.000041, 1149.12, ergebnis noch zu schlecht
+ 
+1, 5, 1, 8, 0.000041, 1024.8
+ 
+2, 5, 1, 2, 0.174220, 1024.8, ergebnis noch zu schlecht
+2, 5, 1, 3, 0.034903, 1024.8, ergebnis noch zu schlecht
+2, 5, 1, 4, 0.008027, 1024.8, ergebnis noch zu schlecht
+2, 5, 1, 5, 0.001794, 1024.8, ergebnis noch zu schlecht
+2, 5, 1, 6, 0.000395, 1024.8, ergebnis noch zu schlecht
+2, 5, 1, 7, 0.000087, 1024.8, ergebnis noch zu schlecht
+ 
+2, 5, 1, 7, 0.000087, 958.799
+ 
+3, 5, 1, 2, 0.154333, 958.799, ergebnis noch zu schlecht
+3, 5, 1, 3, 0.030624, 958.799, ergebnis noch zu schlecht
+3, 5, 1, 4, 0.006501, 958.799, ergebnis noch zu schlecht
+3, 5, 1, 5, 0.001336, 958.799, ergebnis noch zu schlecht
+3, 5, 1, 6, 0.000270, 958.799, ergebnis noch zu schlecht
+3, 5, 1, 7, 0.000054, 958.799, ergebnis noch zu schlecht
+ 
+3, 5, 1, 7, 0.000054, 1044.39
+ 
+4, 5, 1, 2, 0.141164, 1044.39, ergebnis noch zu schlecht
+4, 5, 1, 3, 0.027509, 1044.39, ergebnis noch zu schlecht
+4, 5, 1, 4, 0.005469, 1044.39, ergebnis noch zu schlecht
+4, 5, 1, 5, 0.001050, 1044.39, ergebnis noch zu schlecht
+4, 5, 1, 6, 0.000198, 1044.39, ergebnis noch zu schlecht
+4, 5, 1, 7, 0.000037, 1044.39, ergebnis noch zu schlecht
+ 
+4, 5, 1, 7, 0.000037, 1149.38
+ 
+5, 5, 1, 2, 0.131836, 1149.38, ergebnis noch zu schlecht
+5, 5, 1, 3, 0.025101, 1149.38, ergebnis noch zu schlecht
+5, 5, 1, 4, 0.004718, 1149.38, ergebnis noch zu schlecht
+5, 5, 1, 5, 0.000855, 1149.38, ergebnis noch zu schlecht
+5, 5, 1, 6, 0.000152, 1149.38, ergebnis noch zu schlecht
+5, 5, 1, 7, 0.000027, 1149.38, ergebnis noch zu schlecht
+ 
+5, 5, 1, 7, 0.000027, 1216.89
+ 
+1, 1, 2, 2, 0.203655, 1216.89, ergebnis noch zu schlecht
+1, 1, 2, 3, 0.011203, 1216.89, ergebnis noch zu schlecht
+1, 1, 2, 4, 0.000649, 1216.89, ergebnis noch zu schlecht
+1, 1, 2, 5, 0.000042, 1216.89, ergebnis noch zu schlecht
+ 
+1, 1, 2, 5, 0.000042, 597.806
+ 
+2, 1, 2, 2, 0.048336, 597.806, ergebnis noch zu schlecht
+2, 1, 2, 3, 0.001313, 597.806, ergebnis noch zu schlecht
+2, 1, 2, 4, 0.000063, 597.806, ergebnis noch zu schlecht
+ 
+2, 1, 2, 4, 0.000063, 562.865
+ 
+3, 1, 2, 2, 0.028152, 562.865, ergebnis noch zu schlecht
+3, 1, 2, 3, 0.000638, 562.865, ergebnis noch zu schlecht
+3, 1, 2, 4, 0.000033, 562.865, ergebnis noch zu schlecht
+ 
+3, 1, 2, 4, 0.000033, 610.064
+ 
+4, 1, 2, 2, 0.019259, 610.064, ergebnis noch zu schlecht
+4, 1, 2, 3, 0.000391, 610.064, ergebnis noch zu schlecht
+4, 1, 2, 4, 0.000021, 610.064, ergebnis noch zu schlecht
+ 
+4, 1, 2, 4, 0.000021, 703.827
+ 
+5, 1, 2, 2, 0.014186, 703.827, ergebnis noch zu schlecht
+5, 1, 2, 3, 0.000272, 703.827, ergebnis noch zu schlecht
+5, 1, 2, 4, 0.000015, 703.827, ergebnis noch zu schlecht
+ 
+5, 1, 2, 4, 0.000015, 752.419
+ 
+1, 2, 2, 2, 0.055174, 752.419, ergebnis noch zu schlecht
+1, 2, 2, 3, 0.001479, 752.419, ergebnis noch zu schlecht
+1, 2, 2, 4, 0.000064, 752.419, ergebnis noch zu schlecht
+ 
+1, 2, 2, 4, 0.000064, 527.684
+ 
+2, 2, 2, 2, 0.027630, 527.684, ergebnis noch zu schlecht
+2, 2, 2, 3, 0.000620, 527.684, ergebnis noch zu schlecht
+2, 2, 2, 4, 0.000031, 527.684, ergebnis noch zu schlecht
+ 
+2, 2, 2, 4, 0.000031, 646.64
+ 
+3, 2, 2, 2, 0.018994, 646.64, ergebnis noch zu schlecht
+3, 2, 2, 3, 0.000380, 646.64, ergebnis noch zu schlecht
+3, 2, 2, 4, 0.000020, 646.64, ergebnis noch zu schlecht
+ 
+3, 2, 2, 4, 0.000020, 705.078
+ 
+4, 2, 2, 2, 0.014046, 705.078, ergebnis noch zu schlecht
+4, 2, 2, 3, 0.000264, 705.078, ergebnis noch zu schlecht
+4, 2, 2, 4, 0.000014, 705.078, ergebnis noch zu schlecht
+ 
+4, 2, 2, 4, 0.000014, 756.036
+ 
+5, 2, 2, 2, 0.010897, 756.036, ergebnis noch zu schlecht
+5, 2, 2, 3, 0.000199, 756.036, ergebnis noch zu schlecht
+5, 2, 2, 4, 0.000010, 756.036, ergebnis noch zu schlecht
+ 
+5, 2, 2, 4, 0.000010, 842.364
+ 
+1, 3, 2, 2, 0.031456, 842.364, ergebnis noch zu schlecht
+1, 3, 2, 3, 0.000684, 842.364, ergebnis noch zu schlecht
+1, 3, 2, 4, 0.000031, 842.364, ergebnis noch zu schlecht
+ 
+1, 3, 2, 4, 0.000031, 2145.25
+ 
+2, 3, 2, 2, 0.019019, 2145.25, ergebnis noch zu schlecht
+2, 3, 2, 3, 0.000377, 2145.25, ergebnis noch zu schlecht
+2, 3, 2, 4, 0.000019, 2145.25, ergebnis noch zu schlecht
+ 
+2, 3, 2, 4, 0.000019, 723.016
+ 
+3, 3, 2, 2, 0.014034, 723.016, ergebnis noch zu schlecht
+3, 3, 2, 3, 0.000260, 723.016, ergebnis noch zu schlecht
+3, 3, 2, 4, 0.000013, 723.016, ergebnis noch zu schlecht
+ 
+3, 3, 2, 4, 0.000013, 780.747
+ 
+4, 3, 2, 2, 0.010883, 780.747, ergebnis noch zu schlecht
+4, 3, 2, 3, 0.000196, 780.747, ergebnis noch zu schlecht
+4, 3, 2, 4, 0.000010, 780.747, ergebnis noch zu schlecht
+ 
+4, 3, 2, 4, 0.000010, 825.847
+ 
+5, 3, 2, 2, 0.008745, 825.847, ergebnis noch zu schlecht
+5, 3, 2, 3, 0.000156, 825.847, ergebnis noch zu schlecht
+5, 3, 2, 4, 0.000008, 825.847, ergebnis noch zu schlecht
+ 
+5, 3, 2, 4, 0.000008, 905.161
+ 
+1, 4, 2, 2, 0.020995, 905.161, ergebnis noch zu schlecht
+1, 4, 2, 3, 0.000402, 905.161, ergebnis noch zu schlecht
+1, 4, 2, 4, 0.000019, 905.161, ergebnis noch zu schlecht
+ 
+1, 4, 2, 4, 0.000019, 709.195
+ 
+2, 4, 2, 2, 0.014041, 709.195, ergebnis noch zu schlecht
+2, 4, 2, 3, 0.000258, 709.195, ergebnis noch zu schlecht
+2, 4, 2, 4, 0.000013, 709.195, ergebnis noch zu schlecht
+ 
+2, 4, 2, 4, 0.000013, 792.854
+ 
+3, 4, 2, 2, 0.010874, 792.854, ergebnis noch zu schlecht
+3, 4, 2, 3, 0.000194, 792.854, ergebnis noch zu schlecht
+3, 4, 2, 4, 0.000010, 792.854, ergebnis noch zu schlecht
+ 
+3, 4, 2, 4, 0.000010, 849.592
+ 
+4, 4, 2, 2, 0.008735, 849.592, ergebnis noch zu schlecht
+4, 4, 2, 3, 0.000154, 849.592, ergebnis noch zu schlecht
+4, 4, 2, 4, 0.000008, 849.592, ergebnis noch zu schlecht
+ 
+4, 4, 2, 4, 0.000008, 929.515
+ 
+5, 4, 2, 2, 0.007213, 929.515, ergebnis noch zu schlecht
+5, 4, 2, 3, 0.000128, 929.515, ergebnis noch zu schlecht
+5, 4, 2, 4, 0.000006, 929.515, ergebnis noch zu schlecht
+ 
+5, 4, 2, 4, 0.000006, 992.806
+ 
+1, 5, 2, 2, 0.015197, 992.806, ergebnis noch zu schlecht
+1, 5, 2, 3, 0.000270, 992.806, ergebnis noch zu schlecht
+1, 5, 2, 4, 0.000013, 992.806, ergebnis noch zu schlecht
+ 
+1, 5, 2, 4, 0.000013, 780.214
+ 
+2, 5, 2, 2, 0.010876, 780.214, ergebnis noch zu schlecht
+2, 5, 2, 3, 0.000192, 780.214, ergebnis noch zu schlecht
+2, 5, 2, 4, 0.000010, 780.214, ergebnis noch zu schlecht
+ 
+2, 5, 2, 4, 0.000010, 846.136
+ 
+3, 5, 2, 2, 0.008728, 846.136, ergebnis noch zu schlecht
+3, 5, 2, 3, 0.000153, 846.136, ergebnis noch zu schlecht
+3, 5, 2, 4, 0.000008, 846.136, ergebnis noch zu schlecht
+ 
+3, 5, 2, 4, 0.000008, 923.108
+ 
+4, 5, 2, 2, 0.007205, 923.108, ergebnis noch zu schlecht
+4, 5, 2, 3, 0.000126, 923.108, ergebnis noch zu schlecht
+4, 5, 2, 4, 0.000006, 923.108, ergebnis noch zu schlecht
+ 
+4, 5, 2, 4, 0.000006, 995.237
+ 
+5, 5, 2, 2, 0.006080, 995.237, ergebnis noch zu schlecht
+5, 5, 2, 3, 0.000108, 995.237, ergebnis noch zu schlecht
+5, 5, 2, 4, 0.000005, 995.237, ergebnis noch zu schlecht
+ 
+5, 5, 2, 4, 0.000005, 1059.37
+ 
+1, 1, 3, 2, 0.196511, 1059.37, ergebnis noch zu schlecht
+1, 1, 3, 3, 0.010846, 1059.37, ergebnis noch zu schlecht
+1, 1, 3, 4, 0.000626, 1059.37, ergebnis noch zu schlecht
+1, 1, 3, 5, 0.000038, 1059.37, ergebnis noch zu schlecht
+ 
+1, 1, 3, 5, 0.000038, 1830.07
+ 
+2, 1, 3, 2, 0.047245, 1830.07, ergebnis noch zu schlecht
+2, 1, 3, 3, 0.001245, 1830.07, ergebnis noch zu schlecht
+2, 1, 3, 4, 0.000050, 1830.07, ergebnis noch zu schlecht
+ 
+2, 1, 3, 4, 0.000050, 1868.96
+ 
+3, 1, 3, 2, 0.027717, 1868.96, ergebnis noch zu schlecht
+3, 1, 3, 3, 0.000596, 1868.96, ergebnis noch zu schlecht
+3, 1, 3, 4, 0.000025, 1868.96, ergebnis noch zu schlecht
+ 
+3, 1, 3, 4, 0.000025, 2152.58
+ 
+4, 1, 3, 2, 0.018989, 2152.58, ergebnis noch zu schlecht
+4, 1, 3, 3, 0.000358, 2152.58, ergebnis noch zu schlecht
+4, 1, 3, 4, 0.000016, 2152.58, ergebnis noch zu schlecht
+ 
+4, 1, 3, 4, 0.000016, 2505.58
+ 
+5, 1, 3, 2, 0.013989, 2505.58, ergebnis noch zu schlecht
+5, 1, 3, 3, 0.000244, 2505.58, ergebnis noch zu schlecht
+5, 1, 3, 4, 0.000011, 2505.58, ergebnis noch zu schlecht
+ 
+5, 1, 3, 4, 0.000011, 2853.21
+ 
+1, 2, 3, 2, 0.053893, 2853.21, ergebnis noch zu schlecht
+1, 2, 3, 3, 0.001413, 2853.21, ergebnis noch zu schlecht
+1, 2, 3, 4, 0.000052, 2853.21, ergebnis noch zu schlecht
+ 
+1, 2, 3, 4, 0.000052, 1833.49
+ 
+2, 2, 3, 2, 0.027207, 1833.49, ergebnis noch zu schlecht
+2, 2, 3, 3, 0.000585, 1833.49, ergebnis noch zu schlecht
+2, 2, 3, 4, 0.000025, 1833.49, ergebnis noch zu schlecht
+ 
+2, 2, 3, 4, 0.000025, 2183.7
+ 
+3, 2, 3, 2, 0.018736, 2183.7, ergebnis noch zu schlecht
+3, 2, 3, 3, 0.000352, 2183.7, ergebnis noch zu schlecht
+3, 2, 3, 4, 0.000016, 2183.7, ergebnis noch zu schlecht
+ 
+3, 2, 3, 4, 0.000016, 4382.85
+ 
+4, 2, 3, 2, 0.013862, 4382.85, ergebnis noch zu schlecht
+4, 2, 3, 3, 0.000240, 4382.85, ergebnis noch zu schlecht
+4, 2, 3, 4, 0.000011, 4382.85, ergebnis noch zu schlecht
+ 
+4, 2, 3, 4, 0.000011, 2825.59
+ 
+5, 2, 3, 2, 0.010751, 2825.59, ergebnis noch zu schlecht
+5, 2, 3, 3, 0.000179, 2825.59, ergebnis noch zu schlecht
+5, 2, 3, 4, 0.000008, 2825.59, ergebnis noch zu schlecht
+ 
+5, 2, 3, 4, 0.000008, 3184.19
+ 
+1, 3, 3, 2, 0.030974, 3184.19, ergebnis noch zu schlecht
+1, 3, 3, 3, 0.000650, 3184.19, ergebnis noch zu schlecht
+1, 3, 3, 4, 0.000025, 3184.19, ergebnis noch zu schlecht
+ 
+1, 3, 3, 4, 0.000025, 2127.21
+ 
+2, 3, 3, 2, 0.018765, 2127.21, ergebnis noch zu schlecht
+2, 3, 3, 3, 0.000350, 2127.21, ergebnis noch zu schlecht
+2, 3, 3, 4, 0.000015, 2127.21, ergebnis noch zu schlecht
+ 
+2, 3, 3, 4, 0.000015, 2551.47
+ 
+3, 3, 3, 2, 0.013855, 2551.47, ergebnis noch zu schlecht
+3, 3, 3, 3, 0.000238, 2551.47, ergebnis noch zu schlecht
+3, 3, 3, 4, 0.000011, 2551.47, ergebnis noch zu schlecht
+ 
+3, 3, 3, 4, 0.000011, 2841.96
+ 
+4, 3, 3, 2, 0.010744, 2841.96, ergebnis noch zu schlecht
+4, 3, 3, 3, 0.000177, 2841.96, ergebnis noch zu schlecht
+4, 3, 3, 4, 0.000008, 2841.96, ergebnis noch zu schlecht
+ 
+4, 3, 3, 4, 0.000008, 3189.34
+ 
+5, 3, 3, 2, 0.008629, 3189.34, ergebnis noch zu schlecht
+5, 3, 3, 3, 0.000140, 3189.34, ergebnis noch zu schlecht
+5, 3, 3, 4, 0.000007, 3189.34, ergebnis noch zu schlecht
+ 
+5, 3, 3, 4, 0.000007, 3563.83
+ 
+1, 4, 3, 2, 0.020725, 3563.83, ergebnis noch zu schlecht
+1, 4, 3, 3, 0.000375, 3563.83, ergebnis noch zu schlecht
+1, 4, 3, 4, 0.000015, 3563.83, ergebnis noch zu schlecht
+ 
+1, 4, 3, 4, 0.000015, 2526.35
+ 
+2, 4, 3, 2, 0.013864, 2526.35, ergebnis noch zu schlecht
+2, 4, 3, 3, 0.000237, 2526.35, ergebnis noch zu schlecht
+2, 4, 3, 4, 0.000011, 2526.35, ergebnis noch zu schlecht
+ 
+2, 4, 3, 4, 0.000011, 2840.06
+ 
+3, 4, 3, 2, 0.010738, 2840.06, ergebnis noch zu schlecht
+3, 4, 3, 3, 0.000176, 2840.06, ergebnis noch zu schlecht
+3, 4, 3, 4, 0.000008, 2840.06, ergebnis noch zu schlecht
+ 
+3, 4, 3, 4, 0.000008, 3184.32
+ 
+4, 4, 3, 2, 0.008623, 3184.32, ergebnis noch zu schlecht
+4, 4, 3, 3, 0.000139, 3184.32, ergebnis noch zu schlecht
+4, 4, 3, 4, 0.000006, 3184.32, ergebnis noch zu schlecht
+ 
+4, 4, 3, 4, 0.000006, 3512.14
+ 
+5, 4, 3, 2, 0.007115, 3512.14, ergebnis noch zu schlecht
+5, 4, 3, 3, 0.000115, 3512.14, ergebnis noch zu schlecht
+5, 4, 3, 4, 0.000005, 3512.14, ergebnis noch zu schlecht
+ 
+5, 4, 3, 4, 0.000005, 3859
+ 
+1, 5, 3, 2, 0.015016, 3859, ergebnis noch zu schlecht
+1, 5, 3, 3, 0.000248, 3859, ergebnis noch zu schlecht
+1, 5, 3, 4, 0.000011, 3859, ergebnis noch zu schlecht
+ 
+1, 5, 3, 4, 0.000011, 2858.24
+ 
+2, 5, 3, 2, 0.010740, 2858.24, ergebnis noch zu schlecht
+2, 5, 3, 3, 0.000175, 2858.24, ergebnis noch zu schlecht
+2, 5, 3, 4, 0.000008, 2858.24, ergebnis noch zu schlecht
+ 
+2, 5, 3, 4, 0.000008, 3229.95
+ 
+3, 5, 3, 2, 0.008618, 3229.95, ergebnis noch zu schlecht
+3, 5, 3, 3, 0.000138, 3229.95, ergebnis noch zu schlecht
+3, 5, 3, 4, 0.000006, 3229.95, ergebnis noch zu schlecht
+ 
+3, 5, 3, 4, 0.000006, 267945
+ 
+4, 5, 3, 2, 0.007110, 267945, ergebnis noch zu schlecht
+4, 5, 3, 3, 0.000114, 267945, ergebnis noch zu schlecht
+4, 5, 3, 4, 0.000005, 267945, ergebnis noch zu schlecht
+ 
+4, 5, 3, 4, 0.000005, 3881.86
+ 
+5, 5, 3, 2, 0.005995, 3881.86, ergebnis noch zu schlecht
+5, 5, 3, 3, 0.000097, 3881.86, ergebnis noch zu schlecht
+5, 5, 3, 4, 0.000004, 3881.86, ergebnis noch zu schlecht
+ 
+5, 5, 3, 4, 0.000004, 4217.93
+ 
+1, 1, 4, 2, 0.196140, 4217.93, ergebnis noch zu schlecht
+1, 1, 4, 3, 0.010828, 4217.93, ergebnis noch zu schlecht
+1, 1, 4, 4, 0.000625, 4217.93, ergebnis noch zu schlecht
+1, 1, 4, 5, 0.000038, 4217.93, ergebnis noch zu schlecht
+ 
+1, 1, 4, 5, 0.000038, 13544
+ 
+2, 1, 4, 2, 0.047216, 13544, ergebnis noch zu schlecht
+2, 1, 4, 3, 0.001241, 13544, ergebnis noch zu schlecht
+2, 1, 4, 4, 0.000049, 13544, ergebnis noch zu schlecht
+ 
+2, 1, 4, 4, 0.000049, 13606.3
+ 
+3, 1, 4, 2, 0.027706, 13606.3, ergebnis noch zu schlecht
+3, 1, 4, 3, 0.000594, 13606.3, ergebnis noch zu schlecht
+3, 1, 4, 4, 0.000025, 13606.3, ergebnis noch zu schlecht
+ 
+3, 1, 4, 4, 0.000025, 16617.2
+ 
+4, 1, 4, 2, 0.018982, 16617.2, ergebnis noch zu schlecht
+4, 1, 4, 3, 0.000356, 16617.2, ergebnis noch zu schlecht
+4, 1, 4, 4, 0.000016, 16617.2, ergebnis noch zu schlecht
+ 
+4, 1, 4, 4, 0.000016, 19629.5
+ 
+5, 1, 4, 2, 0.013984, 19629.5, ergebnis noch zu schlecht
+5, 1, 4, 3, 0.000243, 19629.5, ergebnis noch zu schlecht
+5, 1, 4, 4, 0.000011, 19629.5, ergebnis noch zu schlecht
+ 
+5, 1, 4, 4, 0.000011, 22582.5
+ 
+1, 2, 4, 2, 0.053862, 22582.5, ergebnis noch zu schlecht
+1, 2, 4, 3, 0.001410, 22582.5, ergebnis noch zu schlecht
+1, 2, 4, 4, 0.000051, 22582.5, ergebnis noch zu schlecht
+ 
+1, 2, 4, 4, 0.000051, 13647.1
+ 
+2, 2, 4, 2, 0.027196, 13647.1, ergebnis noch zu schlecht
+2, 2, 4, 3, 0.000583, 13647.1, ergebnis noch zu schlecht
+2, 2, 4, 4, 0.000024, 13647.1, ergebnis noch zu schlecht
+ 
+2, 2, 4, 4, 0.000024, 16631.2
+ 
+3, 2, 4, 2, 0.018729, 16631.2, ergebnis noch zu schlecht
+3, 2, 4, 3, 0.000350, 16631.2, ergebnis noch zu schlecht
+3, 2, 4, 4, 0.000015, 16631.2, ergebnis noch zu schlecht
+ 
+3, 2, 4, 4, 0.000015, 19714.9
+ 
+4, 2, 4, 2, 0.013857, 19714.9, ergebnis noch zu schlecht
