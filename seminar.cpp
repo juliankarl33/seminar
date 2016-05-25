@@ -280,17 +280,14 @@ void Red_Black_Gauss(int n, grid<type> &u, grid<type> &f, double h,
 
 }
 
-void Jacobi(int n, grid<type> &u, grid<type> &u_neu, grid<type> &f, double h, int numIterations) {
+void Jacobi(int n, grid<type> *u, grid<type> *u_neu, grid<type> &f, double h, int numIterations) {
 
     for (int iterations = 0; iterations < numIterations; iterations++) {
       #pragma omp parallel for
         for (int m = 1; m < n - 1; ++m) {
             for (int q=1; q < n - 1; ++q) {
                 if (!(m == n / 2  && q >= n / 2 )) {
-                    u_neu(q, m) = (1.0 / 4.0)
-                            * (h * h * f(q, m)
-                                    + (u(q - 1, m) + u(q + 1, m) + u(q, m - 1)
-                                            + u(q, m + 1)));
+                    (*u_neu)(q, m) = (1.0 / 4.0) * (h * h * f(q, m) + ((*u)(q - 1, m) + (*u)(q + 1, m) + (*u)(q, m - 1) + (*u)(q, m + 1)));
                 }
             }
         }
@@ -387,7 +384,7 @@ void solveMG(int l, std::vector<grid<type>>& u, std::vector<grid<type>>& u_neu, 
     
     //Presmoothing
     //Red_Black_Gauss(n[l], u[l], f[l], h[l], v1);
-    Jacobi(n[l], u[l], u_neu[l], f[l], h[l], v1);
+    Jacobi(n[l], &u[l], &u_neu[l], f[l], h[l], v1);
 
     // Residuum
     residual(n[l], u[l], f[l], res[l], h[l]);
@@ -397,7 +394,8 @@ void solveMG(int l, std::vector<grid<type>>& u, std::vector<grid<type>>& u_neu, 
     
     if (l <= 1) {
         // solve
-        Red_Black_Gauss(n[l - 1], u[l - 1], f[l - 1], h[l - 1], 1);
+        //Red_Black_Gauss(n[l - 1], u[l - 1], f[l - 1], h[l - 1], 1);
+        Jacobi(n[l-1], &u[l-1], &u_neu[l-1], f[l-1], h[l-1], 1);
         
     } else {
         for (int i = 1; i < n[l - 1] - 1; i++) {
@@ -426,7 +424,7 @@ void solveMG(int l, std::vector<grid<type>>& u, std::vector<grid<type>>& u_neu, 
     
     //Postsmothing
     //Red_Black_Gauss(n[l], u[l], f[l], h[l], v2);
-    Jacobi(n[l], u[l], u_neu[l], f[l], h[l], v1);
+    Jacobi(n[l], &u[l], &u_neu[l], f[l], h[l], v2);
     
 }
 
@@ -459,7 +457,8 @@ int main(int argc, char **argv) {
 	typeVec h(l, 0.0);// mesh size of each levels, where h[0] is the mesh size of the coarsesed grid
     std::vector<grid<type>> f(l);	// vector of grids for the rig1ht hand side
 	std::vector<grid<type>> res(l);	// vector of grids for the residuums
-	std::vector<grid<type>> u(l);	// vector of grids for the approximation u
+    std::vector<grid<type>> u(l);	// vector of grids for the approximation u
+    std::vector<grid<type>> u_neu(l);	// vector of grids for the approximation u_neu
 
 	// initialisation -------------------------------------------------------------------------------------------
 
@@ -514,7 +513,7 @@ int main(int argc, char **argv) {
 		// linke Seite oben
 		u[l - 1](0, i) = sqrt(sqrt(y * y + 1)) * sin(0.5 * (M_PI - atan(y)));
 
-	}
+    }
 
 	// Randpunkte setzen, die von 0 bis -1 laufen
 	#pragma omp parallel for
@@ -537,6 +536,12 @@ int main(int argc, char **argv) {
 		u[l - 1](0, i) = sqrt(sqrt(y * y + 1)) * sin(0.5 * (M_PI + atan(-y)));
 	}
     
+    for (int j = 0; j < n[l - 1]; j++) {
+        for (int i = 0; i < n[l - 1]; i++) {
+            u_neu[l-1](i,j) = u[l-1](i,j);
+        }
+    }
+
     //init.dat Ausgabe
     std::ofstream init;
     init.open("init.dat", std::ios::out);
