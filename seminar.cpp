@@ -17,6 +17,7 @@
 #include <assert.h>
 #include <sys/time.h>
 #include "emmintrin.h"
+#include <omp.h>
 
 #define BLOCKFAKI 1000
 #define BLOCKFAKJ 1000
@@ -35,7 +36,6 @@ private:
 
 public:
 	grid() {
-		//data = NULL;
 		lengthInX = 0;
 		lengthInY = 0;
 	}
@@ -46,7 +46,6 @@ public:
 	}		// Standart-constructor
 	grid(size_t xDim, size_t yDim, T value) {
 		data = std::vector<T>((xDim+1) * yDim, value);
-		//data = (double*)malloc((xDim+1)*yDim);
 		lengthInX = xDim+1;
 		lengthInY = yDim;
 	}	// initalisation-constructor
@@ -149,7 +148,7 @@ void residual(int n, grid<type> &u, grid<type> &f, grid<type> &res, double h) {
 
 // restrict a grid (from) with the full weighting stencile to another grid (to). From has size nx[l] and to has size nx[l-1].
 void coarsening(int l, grid<type>& from, grid<type>& to, intVec& n) {
-
+#pragma omp parallel for
 	for (int i = 1; i < n[l - 1] - 1; i++) {
 		for (int j = 1; j < n[l - 1] - 1; j++) {
 			if (!(i == n[l - 1] / 2  && j >= n[l - 1] / 2 )) {
@@ -171,11 +170,8 @@ void coarsening(int l, grid<type>& from, grid<type>& to, intVec& n) {
 void coarsening(int l, grid<type>& from, grid<type>& to, intVec& n) {
 
   
-  __m128d const2 = _mm_set_pd(2, 2);
-  __m128d const4 = _mm_set_pd(4, 4);
-  __m128d const1over16 = _mm_set_pd(0.0625, 0.0625);
- // __m128d reg1, reg2, reg3, reg4, reg5;
-   __m128d reg1, reg2, reg3, reg4, reg5, reg6, reg7, reg8, reg9, erg;
+type* buf = (type*)malloc( 2*sizeof(type) );
+__m128d erg;
    
   //#pragma omp parallel for private(reg1, reg2, reg3, reg4, reg5)
 	for (int i = 1; i < n[l - 1] - 1; i++) {
@@ -190,74 +186,28 @@ void coarsening(int l, grid<type>& from, grid<type>& to, intVec& n) {
 					
 		for (int j = 2; j < n[l - 1] - 1; j= j + 2) {
 			if (!(i == n[l - 1] / 2  && j >= n[l - 1] / 2 )) {
-			  
-			  reg1 = _mm_loadu_pd(&from(2 * j - 1,  2 * i + 1));
-			  reg2 = _mm_loadu_pd(&from(2 * j, 	2 * i + 1));
-			  reg3 = _mm_loadu_pd(&from(2 * j + 1,  2 * i + 1));
-			  reg4 = _mm_loadu_pd(&from(2 * j - 1,  2 * i));
-			  reg5 = _mm_loadu_pd(&from(2 * j,      2 * i));
-			  reg6 = _mm_loadu_pd(&from(2 * j + 1,  2 * i));
-			  reg7 = _mm_loadu_pd(&from(2 * j - 1,  2 * i - 1));
-			  reg8 = _mm_loadu_pd(&from(2 * j,      2 * i - 1));
-			  reg9 = _mm_loadu_pd(&from(2 * j + 1,  2 * i - 1));
-			  
-			  reg2 = _mm_mul_pd(reg2, const2);			
-			  reg4 = _mm_mul_pd(reg4, const2);			
-			  reg6 = _mm_mul_pd(reg6, const2);			
-			  reg8 = _mm_mul_pd(reg8, const2);	
-			  
-			  reg5 = _mm_mul_pd(reg5, const4);
-			  
-			  erg = _mm_add_pd(reg1, reg2);
-			  erg = _mm_add_pd(erg, reg3);
-			  erg = _mm_add_pd(erg, reg4);
-			  erg = _mm_add_pd(erg, reg5);
-			  erg = _mm_add_pd(erg, reg6);
-			  erg = _mm_add_pd(erg, reg7);
-			  erg = _mm_add_pd(erg, reg8);
-			  erg = _mm_add_pd(erg, reg9);
-				
-			  erg = _mm_mul_pd(erg, const1over16);
-				
-			  _mm_stream_pd(&to(j, i), erg); 
-			  
-			  	reg1 = _mm_loadu_pd(&from(2 * j - 1, 2 * i + 1));	// links-oben
-				reg2 = _mm_loadu_pd(&from(2 * j, 2 * i + 1));		// oben
-			  
-				reg3 = _mm_mul_pd(reg2, const2);			// oben x 2
-				reg4 = _mm_add_pd(reg3, reg1);				// links-oben + 2x oben
-			  
-				reg5 = _mm_loadu_pd(&from(2 * j + 1, 2 * i + 1));	// rechts-oben
-				reg2 = _mm_add_pd(reg4, reg5);				// links-oben + 2x oben
-				
-				reg1 = _mm_loadu_pd(&from(2 * j - 1, 2 * i));		// links
-				reg3 = _mm_mul_pd(reg1, const2);			// links x2
-				reg1 = _mm_loadu_pd(&from(2 * j, 2 * i));		// mitte
-				reg4 = _mm_mul_pd(reg1, const4);			// mitte x4
-				reg1 = _mm_add_pd(reg4, reg3);				// mitte x4 + links x2
-				reg3 = _mm_add_pd(reg1, reg2);				// links-oben + 2x oben + mitte x4 + links x2
-				
-				reg1 = _mm_loadu_pd(&from(2 * j + 1, 2 * i));		// rechts
-				reg2 = _mm_loadu_pd(&from(2 * j - 1, 2 * i - 1));		// links-unten
-			  
-				reg4 = _mm_mul_pd(reg1, const2);			// rechts x 2
-				reg1 = _mm_add_pd(reg4, reg2);				// links-unten + 2x rechts
-				
-				
-				reg2 = _mm_loadu_pd(&from(2 * j, 2 * i - 1));		// unten
-				reg5 = _mm_loadu_pd(&from(2 * j + 1, 2 * i - 1));		// rechts-unten
-			  
-				reg4 = _mm_mul_pd(reg2, const2);			// unten x 2
-				reg2 = _mm_add_pd(reg5, reg4);				// rechts-unten + 2x unten
-				
-				reg5 = _mm_add_pd(reg1, reg2);				// rechts-unten + 2x unten + links-unten + 2x rechts
-				
-				reg1 = _mm_add_pd(reg3, reg5);	
-				
-				reg2 = _mm_mul_pd(reg1, const1over16);
-				
-				_mm_stream_pd(&to(j, i), reg2); 
-				
+			  		buf[0] = (from(2 * j - 1, 2 * i + 1)
+						+ 2 * from(2 * j, 2 * i + 1)
+						+ from(2 * j + 1, 2 * i + 1)
+						+ 2 * from(2 * j - 1, 2 * i) + 4 * from(2 * j, 2 * i)
+						+ 2 * from(2 * j + 1, 2 * i)
+						+ from(2 * j - 1, 2 * i - 1)
+						+ 2 * from(2 * j, 2 * i - 1)
+						+ from(2 * j + 1, 2 * i - 1)) / 16.0;
+						
+					buf[1] = (from(2 * (j+1) - 1, 2 * i + 1)
+						+ 2 * from(2 * (j+1), 2 * i + 1)
+						+ from(2 * (j+1) + 1, 2 * i + 1)
+						+ 2 * from(2 * (j+1) - 1, 2 * i) + 4 * from(2 * (j+1), 2 * i)
+						+ 2 * from(2 * (j+1) + 1, 2 * i)
+						+ from(2 * (j+1) - 1, 2 * i - 1)
+						+ 2 * from(2 * (j+1), 2 * i - 1)
+						+ from(2 * (j+1) + 1, 2 * i - 1)) / 16.0;
+						
+						
+					erg = _mm_load_pd (&buf[0]);
+					_mm_stream_pd (&to(j, i), erg );
+		
 			}
 		}
 	}
@@ -265,7 +215,7 @@ void coarsening(int l, grid<type>& from, grid<type>& to, intVec& n) {
 */
 
 void interpolation(int l, grid<type>& from, grid<type>& to, intVec& n) {
-
+#pragma omp parallel for
 	for (int i = 1; i < n[l] - 1; i++) {
 		for (int j = 1; j < n[l] - 1; j++) {
 			if (!(i == n[l] / 2  && j >= n[l] / 2)) {
@@ -329,6 +279,64 @@ void Red_Black_Gauss(int n, grid<type> &u, grid<type> &f, double h,
 	}
 
 }
+/*
+void Jacobi(int n, grid<type> &u, grid<type> &u_neu, grid<type> &f, double h, int numIterations) {
+
+    for (int iterations = 0; iterations < numIterations; iterations++) {
+      #pragma omp parallel for
+        for (int m = 1; m < n - 1; ++m) {
+            for (int q=1; q < n - 1; ++q) {
+                if (!(m == n / 2  && q >= n / 2 )) {
+                    u_neu(q, m) = (1.0 / 4.0) * (h * h * f(q, m) + (u(q - 1, m) + u(q + 1, m) + u(q, m - 1) + u(q, m + 1)));
+                }
+            }
+        }
+
+        std::swap(u, u_neu);
+    }
+
+}
+*/
+
+void Jacobi(int n, grid<type> &u, grid<type> &u_neu, grid<type> &f, double h, int numIterations) {
+
+    __m128d reg1, reg2, reg3, reg4;
+    __m128d cost1over4 = _mm_set_pd1(0.25);
+    __m128d constH2 = _mm_set_pd1( h*h);
+
+    for (int iterations = 0; iterations < numIterations; iterations++) {
+      #pragma omp parallel for private(reg1, reg2, reg3, reg4)
+        for (int m = 1; m < n - 1; ++m) {
+	    u_neu(1, m) = (1.0 / 4.0) * (h * h * f(1, m) + (u(0, m) + u(2, m) + u(1, m - 1) + u(1, m + 1)));
+            for (int q=2; q < n - 1; q=q+2) {
+                if (!(m == n / 2  && q >= n / 2 )) {
+	
+		    reg1 = _mm_loadu_pd( &f(q,m));
+		    reg2 = _mm_mul_pd( reg1, constH2);
+		    
+		    reg3 = _mm_loadu_pd(&u(q-1,m));
+		    reg4 = _mm_loadu_pd(&u(q+1,m));
+		    reg1 = _mm_add_pd( reg3, reg4 );
+		    reg3 = _mm_add_pd( reg1, reg2 );
+		    
+		    reg1 = _mm_load_pd(&u(q,m-1));
+		    reg2 = _mm_load_pd(&u(q,m+1));
+		    reg4 = _mm_add_pd( reg1, reg2);
+		    
+		    reg1 = _mm_add_pd( reg3, reg4 );
+
+		    reg2 = _mm_mul_pd( reg1, cost1over4 );
+		    _mm_stream_pd (&u_neu(q, m), reg2 );
+                    //u_neu(q, m) = (1.0 / 4.0) * (h * h * f(q, m) + (u(q - 1, m) + u(q + 1, m) + u(q, m - 1) + u(q, m + 1)));
+                }
+            }
+        }
+
+        std::swap(u, u_neu);
+    }
+
+}
+
 
 /*
 
@@ -410,14 +418,15 @@ void solveMG(int l, std::vector<grid<type>>& u, std::vector<grid<type>>& f,
 
 */
 
-void solveMG(int l, std::vector<grid<type>>& u, std::vector<grid<type>>& f,
+void solveMG(int l, std::vector<grid<type>>& u, /*std::vector<grid<type>>& u_neu,*/ std::vector<grid<type>>& f,
              intVec& n, std::vector<type>& h, std::vector<grid<type>>& res, int v1, int v2, int gamma) {
     
 
     
     //Presmoothing
     Red_Black_Gauss(n[l], u[l], f[l], h[l], v1);
-    
+    //Jacobi(n[l], u[l], u_neu[l], f[l], h[l], v1);
+
     // Residuum
     residual(n[l], u[l], f[l], res[l], h[l]);
 
@@ -427,6 +436,7 @@ void solveMG(int l, std::vector<grid<type>>& u, std::vector<grid<type>>& f,
     if (l <= 1) {
         // solve
         Red_Black_Gauss(n[l - 1], u[l - 1], f[l - 1], h[l - 1], 1);
+        //Jacobi(n[l-1], u[l-1], u_neu[l-1], f[l-1], h[l-1], 1);
         
     } else {
         for (int i = 1; i < n[l - 1] - 1; i++) {
@@ -435,7 +445,7 @@ void solveMG(int l, std::vector<grid<type>>& u, std::vector<grid<type>>& f,
             }
         }
         for (int i = 0; i < gamma; i++) {
-            solveMG(l - 1, u, f, n, h, res, v1, v2, gamma);
+            solveMG(l - 1, u, /*u_neu,*/ f, n, h, res, v1, v2, gamma);
         }
         
         
@@ -444,6 +454,7 @@ void solveMG(int l, std::vector<grid<type>>& u, std::vector<grid<type>>& f,
         interpolation(l, u[l - 1], correction, n);
         
         // correction
+	#pragma omp parallel for
         for (int i = 1; i < n[l] - 1; i++) {
             for (int j = 1; j < n[l] - 1; j++) {
                 u[l](j, i) += correction(j, i);
@@ -452,21 +463,21 @@ void solveMG(int l, std::vector<grid<type>>& u, std::vector<grid<type>>& f,
 
     }
     
-
     //Postsmothing
     Red_Black_Gauss(n[l], u[l], f[l], h[l], v2);
+    //Jacobi(n[l], u[l], u_neu[l], f[l], h[l], v2);
     
 }
 
 
 int main(int argc, char **argv) {
 
-    
+    //omp_set_num_threads(7);
     int l;
     int v1 = 2;
     int v2 = 1;
-    int gamma = 1;
-    int cycle = 5;
+    int gamma = 2;
+    int cycle = 4;
     
 	// Ueberpruefung, ob Eingabeparamter passen
     if(argc == 2){
@@ -487,7 +498,8 @@ int main(int argc, char **argv) {
 	typeVec h(l, 0.0);// mesh size of each levels, where h[0] is the mesh size of the coarsesed grid
     std::vector<grid<type>> f(l);	// vector of grids for the rig1ht hand side
 	std::vector<grid<type>> res(l);	// vector of grids for the residuums
-	std::vector<grid<type>> u(l);	// vector of grids for the approximation u
+    std::vector<grid<type>> u(l);	// vector of grids for the approximation u
+   // std::vector<grid<type>> u_neu(l);	// vector of grids for the approximation u_neu
 
 	// initialisation -------------------------------------------------------------------------------------------
 
@@ -512,6 +524,11 @@ int main(int argc, char **argv) {
 		u[i] = grid<type>(n[i], n[i], 0.0);
 	}
 
+    // Initialisierung des Gitters
+  //  for (int i = l - 1; i >= 0; i--) {
+ //       u_neu[i] = grid<type>(n[i], n[i], 0.0);
+  //  }
+
 	// Horizontale und vertikale Randpunkte setzen
 	u[l - 1](n[l - 1] - 1, n[l - 1] / 2) = 0.0;	// Rechts
 	u[l - 1](0, n[l - 1] / 2) = 1.0;	// Links
@@ -519,6 +536,7 @@ int main(int argc, char **argv) {
 	u[l - 1](n[l - 1] / 2, 0) = sin(0.75 * M_PI);	// Unten
 
 	// Randpunkte setzen, die von 0 bis 1 laufen
+	#pragma omp parallel for
 	for (int i = n[l - 1] / 2 + 1; i < n[l - 1]; i++) {
 		double y = -1.0 + i * h[l - 1];
 
@@ -536,9 +554,10 @@ int main(int argc, char **argv) {
 		// linke Seite oben
 		u[l - 1](0, i) = sqrt(sqrt(y * y + 1)) * sin(0.5 * (M_PI - atan(y)));
 
-	}
+    }
 
 	// Randpunkte setzen, die von 0 bis -1 laufen
+	#pragma omp parallel for
 	for (int i = n[l - 1] / 2 - 1; i > 0 - 1; i--) {
 		double y = -1.0 + i * h[l - 1];
 
@@ -558,6 +577,12 @@ int main(int argc, char **argv) {
 		u[l - 1](0, i) = sqrt(sqrt(y * y + 1)) * sin(0.5 * (M_PI + atan(-y)));
 	}
     
+ //   for (int j = 0; j < n[l - 1]; j++) {
+  //      for (int i = 0; i < n[l - 1]; i++) {
+  //          u_neu[l-1](i,j) = u[l-1](i,j);
+  //      }
+  //  }
+
     //init.dat Ausgabe
     std::ofstream init;
     init.open("init.dat", std::ios::out);
@@ -581,7 +606,7 @@ int main(int argc, char **argv) {
 	gettimeofday(&t0, NULL);
     //Red_Black_Gauss( n[l-1], u[l-1], f[l-1], h[l-1], 10000);
     for(int i = 0; i < cycle; i++){
-        solveMG(l - 1, u, f, n, h, res, v1, v2, gamma);
+        solveMG(l - 1, u /*, u_neu*/, f, n, h, res, v1, v2, gamma);
     }
 	gettimeofday(&t, NULL);
 	std::cout << "Wall clock time of MG execution: "

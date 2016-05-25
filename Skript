@@ -2,28 +2,30 @@
 
 
 error=0.0000918
-level=5
+level=9
 cycle=1
 ergebnis=0
 output=0
 time=0
-
+echo "Jacobi" >> skript_ergebnisse.txt
 echo "v1, v2, gamma, cycle, L2 Error, time" >> skript_ergebnisse.txt
 echo " " >> skript_ergebnisse.txt
 
-for gamma in 1 2 3 4
+for gamma in 1 2 3
 do
-	for v2 in 1 2 3 4 5
+	for v2 in 2 3 4 5 6 7 8 9 10 11 12 13 14 15
 	do
-        for v1 in 1 2 3 4 5
+        for v1 in 2 3 4 5 6 7 8 9 10 11 12 13 14 15
         do
             output=$(./seminar $level $v1 $v2 $gamma $cycle)
             ergebnis=$(echo "$output" | grep "error" | awk '{ print $3 }' )
-            while [ $(echo "$error < $ergebnis" | bc) -eq 1 ]
+            time=$(echo "$output" | grep "time" | awk '{ print $7 }' )
+            while [ $(echo "$error < $ergebnis" | bc) -eq 1 -a $(echo "$time < 500" | bc) -eq 1 ]
             do
                 cycle=$((cycle+1))
                 output=$(./seminar $level $v1 $v2 $gamma $cycle)
                 ergebnis=$(echo "$output" | grep "error" | awk '{ print $3 }' )
+                time=$(echo "$output" | grep "time" | awk '{ print $7 }' )
                 echo "$v1, $v2, $gamma, $cycle, $ergebnis, $time, ergebnis noch zu schlecht" >> skript_ergebnisse.txt
             done
             time=$(echo "$output" | grep "time" | awk '{ print $7 }' )
