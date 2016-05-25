@@ -28,10 +28,14 @@ do
                 time=$(echo "$output" | grep "time" | awk '{ print $7 }' )
                 echo "$v1, $v2, $gamma, $cycle, $ergebnis, $time, ergebnis noch zu schlecht" >> skript_ergebnisse.txt
             done
-            time=$(echo "$output" | grep "time" | awk '{ print $7 }' )
-            echo " " >> skript_ergebnisse.txt
-            echo "$v1, $v2, $gamma, $cycle, $ergebnis, $time" >> skript_ergebnisse.txt
-            echo " " >> skript_ergebnisse.txt
+            if [ $(echo "$time < 700" | bc) -eq 1 ]; then
+                time=$(echo "$output" | grep "time" | awk '{ print $7 }' )
+                echo " " >> skript_ergebnisse.txt
+                echo "$v1, $v2, $gamma, $cycle, $ergebnis, $time" >> skript_ergebnisse.txt
+                echo " " >> skript_ergebnisse.txt
+            else
+                echo "too much time - abort" >> skript_ergebnisse.txt
+            fi
             cycle=1
         done
 	done
