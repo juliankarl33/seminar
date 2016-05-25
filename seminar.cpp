@@ -280,6 +280,26 @@ void Red_Black_Gauss(int n, grid<type> &u, grid<type> &f, double h,
 
 }
 
+void Jacobi(int n, grid<type> &u, grid<type> &u_neu, grid<type> &f, double h, int numIterations) {
+
+    for (int iterations = 0; iterations < numIterations; iterations++) {
+      #pragma omp parallel for
+        for (int m = 1; m < n - 1; ++m) {
+            for (int q=1; q < n - 1; ++q) {
+                if (!(m == n / 2  && q >= n / 2 )) {
+                    u_neu(q, m) = (1.0 / 4.0)
+                            * (h * h * f(q, m)
+                                    + (u(q - 1, m) + u(q + 1, m) + u(q, m - 1)
+                                            + u(q, m + 1)));
+                }
+            }
+        }
+
+        std::swap(u, u_neu);
+    }
+
+}
+
 /*
 
 //Parameter "finest" wird fuer die Neuman-RB (GHOST) benoetigt. Damit wird nur beim feinsten Grid die Neumann-RB im Red-Black-Gauss berechnet
@@ -360,14 +380,15 @@ void solveMG(int l, std::vector<grid<type>>& u, std::vector<grid<type>>& f,
 
 */
 
-void solveMG(int l, std::vector<grid<type>>& u, std::vector<grid<type>>& f,
+void solveMG(int l, std::vector<grid<type>>& u, std::vector<grid<type>>& u_neu, std::vector<grid<type>>& f,
              intVec& n, std::vector<type>& h, std::vector<grid<type>>& res, int v1, int v2, int gamma) {
     
 
     
     //Presmoothing
-    Red_Black_Gauss(n[l], u[l], f[l], h[l], v1);
-    
+    //Red_Black_Gauss(n[l], u[l], f[l], h[l], v1);
+    Jacobi(n[l], u[l], u_neu[l], f[l], h[l], v1);
+
     // Residuum
     residual(n[l], u[l], f[l], res[l], h[l]);
 
@@ -385,7 +406,7 @@ void solveMG(int l, std::vector<grid<type>>& u, std::vector<grid<type>>& f,
             }
         }
         for (int i = 0; i < gamma; i++) {
-            solveMG(l - 1, u, f, n, h, res, v1, v2, gamma);
+            solveMG(l - 1, u, u_neu, f, n, h, res, v1, v2, gamma);
         }
         
         
@@ -403,9 +424,9 @@ void solveMG(int l, std::vector<grid<type>>& u, std::vector<grid<type>>& f,
 
     }
     
-
     //Postsmothing
-    Red_Black_Gauss(n[l], u[l], f[l], h[l], v2);
+    //Red_Black_Gauss(n[l], u[l], f[l], h[l], v2);
+    Jacobi(n[l], u[l], u_neu[l], f[l], h[l], v1);
     
 }
 
@@ -462,6 +483,11 @@ int main(int argc, char **argv) {
 	for (int i = l - 1; i >= 0; i--) {
 		u[i] = grid<type>(n[i], n[i], 0.0);
 	}
+
+    // Initialisierung des Gitters
+    for (int i = l - 1; i >= 0; i--) {
+        u_neu[i] = grid<type>(n[i], n[i], 0.0);
+    }
 
 	// Horizontale und vertikale Randpunkte setzen
 	u[l - 1](n[l - 1] - 1, n[l - 1] / 2) = 0.0;	// Rechts
@@ -534,7 +560,7 @@ int main(int argc, char **argv) {
 	gettimeofday(&t0, NULL);
     //Red_Black_Gauss( n[l-1], u[l-1], f[l-1], h[l-1], 10000);
     for(int i = 0; i < cycle; i++){
-        solveMG(l - 1, u, f, n, h, res, v1, v2, gamma);
+        solveMG(l - 1, u, u_neu, f, n, h, res, v1, v2, gamma);
     }
 	gettimeofday(&t, NULL);
 	std::cout << "Wall clock time of MG execution: "
