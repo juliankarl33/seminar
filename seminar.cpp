@@ -607,7 +607,7 @@ int main(int argc, char **argv) {
 	gettimeofday(&t0, NULL);
     //Red_Black_Gauss( n[l-1], u[l-1], f[l-1], h[l-1], 10000);
     for(int i = 0; i < cycle; i++){
-        solveMG(l - 1, u /*, u_neu*/, f, n, h, res, v1, v2, gamma);
+        solveMG(l - 1, u , u_neu, f, n, h, res, v1, v2, gamma);
     }
 	gettimeofday(&t, NULL);
 	std::cout << "Wall clock time of MG execution: "
