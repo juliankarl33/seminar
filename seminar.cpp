@@ -279,7 +279,7 @@ void Red_Black_Gauss(int n, grid<type> &u, grid<type> &f, double h,
 	}
 
 }
-/*
+
 void Jacobi(int n, grid<type> &u, grid<type> &u_neu, grid<type> &f, double h, int numIterations) {
 
     for (int iterations = 0; iterations < numIterations; iterations++) {
@@ -296,8 +296,9 @@ void Jacobi(int n, grid<type> &u, grid<type> &u_neu, grid<type> &f, double h, in
     }
 
 }
-*/
 
+
+/*
 void Jacobi(int n, grid<type> &u, grid<type> &u_neu, grid<type> &f, double h, int numIterations) {
 
     __m128d reg1, reg2, reg3, reg4;
@@ -336,7 +337,7 @@ void Jacobi(int n, grid<type> &u, grid<type> &u_neu, grid<type> &f, double h, in
     }
 
 }
-
+*/
 
 /*
 
@@ -424,8 +425,8 @@ void solveMG(int l, std::vector<grid<type>>& u, /*std::vector<grid<type>>& u_neu
 
     
     //Presmoothing
-    Red_Black_Gauss(n[l], u[l], f[l], h[l], v1);
-    //Jacobi(n[l], u[l], u_neu[l], f[l], h[l], v1);
+    //Red_Black_Gauss(n[l], u[l], f[l], h[l], v1);
+    Jacobi(n[l], u[l], u_neu[l], f[l], h[l], v1);
 
     // Residuum
     residual(n[l], u[l], f[l], res[l], h[l]);
@@ -435,8 +436,8 @@ void solveMG(int l, std::vector<grid<type>>& u, /*std::vector<grid<type>>& u_neu
     
     if (l <= 1) {
         // solve
-        Red_Black_Gauss(n[l - 1], u[l - 1], f[l - 1], h[l - 1], 1);
-        //Jacobi(n[l-1], u[l-1], u_neu[l-1], f[l-1], h[l-1], 1);
+        //Red_Black_Gauss(n[l - 1], u[l - 1], f[l - 1], h[l - 1], 1);
+        Jacobi(n[l-1], u[l-1], u_neu[l-1], f[l-1], h[l-1], 1);
         
     } else {
         for (int i = 1; i < n[l - 1] - 1; i++) {
@@ -464,15 +465,15 @@ void solveMG(int l, std::vector<grid<type>>& u, /*std::vector<grid<type>>& u_neu
     }
     
     //Postsmothing
-    Red_Black_Gauss(n[l], u[l], f[l], h[l], v2);
-    //Jacobi(n[l], u[l], u_neu[l], f[l], h[l], v2);
+    //Red_Black_Gauss(n[l], u[l], f[l], h[l], v2);
+    Jacobi(n[l], u[l], u_neu[l], f[l], h[l], v2);
     
 }
 
 
 int main(int argc, char **argv) {
 
-    //omp_set_num_threads(7);
+    //omp_set_num_threads(4);
     int l;
     int v1 = 2;
     int v2 = 1;
@@ -499,7 +500,7 @@ int main(int argc, char **argv) {
     std::vector<grid<type>> f(l);	// vector of grids for the rig1ht hand side
 	std::vector<grid<type>> res(l);	// vector of grids for the residuums
     std::vector<grid<type>> u(l);	// vector of grids for the approximation u
-   // std::vector<grid<type>> u_neu(l);	// vector of grids for the approximation u_neu
+    std::vector<grid<type>> u_neu(l);	// vector of grids for the approximation u_neu
 
 	// initialisation -------------------------------------------------------------------------------------------
 
@@ -525,9 +526,9 @@ int main(int argc, char **argv) {
 	}
 
     // Initialisierung des Gitters
-  //  for (int i = l - 1; i >= 0; i--) {
- //       u_neu[i] = grid<type>(n[i], n[i], 0.0);
-  //  }
+    for (int i = l - 1; i >= 0; i--) {
+      u_neu[i] = grid<type>(n[i], n[i], 0.0);
+    }
 
 	// Horizontale und vertikale Randpunkte setzen
 	u[l - 1](n[l - 1] - 1, n[l - 1] / 2) = 0.0;	// Rechts
@@ -577,11 +578,11 @@ int main(int argc, char **argv) {
 		u[l - 1](0, i) = sqrt(sqrt(y * y + 1)) * sin(0.5 * (M_PI + atan(-y)));
 	}
     
- //   for (int j = 0; j < n[l - 1]; j++) {
-  //      for (int i = 0; i < n[l - 1]; i++) {
-  //          u_neu[l-1](i,j) = u[l-1](i,j);
-  //      }
-  //  }
+    for (int j = 0; j < n[l - 1]; j++) {
+        for (int i = 0; i < n[l - 1]; i++) {
+            u_neu[l-1](i,j) = u[l-1](i,j);
+        }
+    }
 
     //init.dat Ausgabe
     std::ofstream init;
