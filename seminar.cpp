@@ -279,15 +279,15 @@ void Red_Black_Gauss(int n, grid<type> &u, grid<type> &f, double h,
 	}
 
 }
-
-void Jacobi(int n, grid<type> *u, grid<type> *u_neu, grid<type> &f, double h, int numIterations) {
+/*
+void Jacobi(int n, grid<type> &u, grid<type> &u_neu, grid<type> &f, double h, int numIterations) {
 
     for (int iterations = 0; iterations < numIterations; iterations++) {
       #pragma omp parallel for
         for (int m = 1; m < n - 1; ++m) {
             for (int q=1; q < n - 1; ++q) {
                 if (!(m == n / 2  && q >= n / 2 )) {
-                    (*u_neu)(q, m) = (1.0 / 4.0) * (h * h * f(q, m) + ((*u)(q - 1, m) + (*u)(q + 1, m) + (*u)(q, m - 1) + (*u)(q, m + 1)));
+                    u_neu(q, m) = (1.0 / 4.0) * (h * h * f(q, m) + (u(q - 1, m) + u(q + 1, m) + u(q, m - 1) + u(q, m + 1)));
                 }
             }
         }
@@ -296,6 +296,47 @@ void Jacobi(int n, grid<type> *u, grid<type> *u_neu, grid<type> &f, double h, in
     }
 
 }
+*/
+
+void Jacobi(int n, grid<type> &u, grid<type> &u_neu, grid<type> &f, double h, int numIterations) {
+
+    __m128d reg1, reg2, reg3, reg4;
+    __m128d cost1over4 = _mm_set_pd1(0.25);
+    __m128d constH2 = _mm_set_pd1( h*h);
+
+    for (int iterations = 0; iterations < numIterations; iterations++) {
+      #pragma omp parallel for private(reg1, reg2, reg3, reg4)
+        for (int m = 1; m < n - 1; ++m) {
+	    u_neu(1, m) = (1.0 / 4.0) * (h * h * f(1, m) + (u(0, m) + u(2, m) + u(1, m - 1) + u(1, m + 1)));
+            for (int q=2; q < n - 1; q=q+2) {
+                if (!(m == n / 2  && q >= n / 2 )) {
+	
+		    reg1 = _mm_loadu_pd( &f(q,m));
+		    reg2 = _mm_mul_pd( reg1, constH2);
+		    
+		    reg3 = _mm_loadu_pd(&u(q-1,m));
+		    reg4 = _mm_loadu_pd(&u(q+1,m));
+		    reg1 = _mm_add_pd( reg3, reg4 );
+		    reg3 = _mm_add_pd( reg1, reg2 );
+		    
+		    reg1 = _mm_load_pd(&u(q,m-1));
+		    reg2 = _mm_load_pd(&u(q,m+1));
+		    reg4 = _mm_add_pd( reg1, reg2);
+		    
+		    reg1 = _mm_add_pd( reg3, reg4 );
+
+		    reg2 = _mm_mul_pd( reg1, cost1over4 );
+		    _mm_stream_pd (&u_neu(q, m), reg2 );
+                    //u_neu(q, m) = (1.0 / 4.0) * (h * h * f(q, m) + (u(q - 1, m) + u(q + 1, m) + u(q, m - 1) + u(q, m + 1)));
+                }
+            }
+        }
+
+        std::swap(u, u_neu);
+    }
+
+}
+
 
 /*
 
@@ -377,14 +418,14 @@ void solveMG(int l, std::vector<grid<type>>& u, std::vector<grid<type>>& f,
 
 */
 
-void solveMG(int l, std::vector<grid<type>>& u, std::vector<grid<type>>& u_neu, std::vector<grid<type>>& f,
+void solveMG(int l, std::vector<grid<type>>& u, /*std::vector<grid<type>>& u_neu,*/ std::vector<grid<type>>& f,
              intVec& n, std::vector<type>& h, std::vector<grid<type>>& res, int v1, int v2, int gamma) {
     
 
     
     //Presmoothing
-    //Red_Black_Gauss(n[l], u[l], f[l], h[l], v1);
-    Jacobi(n[l], &u[l], &u_neu[l], f[l], h[l], v1);
+    Red_Black_Gauss(n[l], u[l], f[l], h[l], v1);
+    //Jacobi(n[l], u[l], u_neu[l], f[l], h[l], v1);
 
     // Residuum
     residual(n[l], u[l], f[l], res[l], h[l]);
@@ -394,8 +435,8 @@ void solveMG(int l, std::vector<grid<type>>& u, std::vector<grid<type>>& u_neu, 
     
     if (l <= 1) {
         // solve
-        //Red_Black_Gauss(n[l - 1], u[l - 1], f[l - 1], h[l - 1], 1);
-        Jacobi(n[l-1], &u[l-1], &u_neu[l-1], f[l-1], h[l-1], 1);
+        Red_Black_Gauss(n[l - 1], u[l - 1], f[l - 1], h[l - 1], 1);
+        //Jacobi(n[l-1], u[l-1], u_neu[l-1], f[l-1], h[l-1], 1);
         
     } else {
         for (int i = 1; i < n[l - 1] - 1; i++) {
@@ -404,7 +445,7 @@ void solveMG(int l, std::vector<grid<type>>& u, std::vector<grid<type>>& u_neu, 
             }
         }
         for (int i = 0; i < gamma; i++) {
-            solveMG(l - 1, u, u_neu, f, n, h, res, v1, v2, gamma);
+            solveMG(l - 1, u, /*u_neu,*/ f, n, h, res, v1, v2, gamma);
         }
         
         
@@ -423,8 +464,8 @@ void solveMG(int l, std::vector<grid<type>>& u, std::vector<grid<type>>& u_neu, 
     }
     
     //Postsmothing
-    //Red_Black_Gauss(n[l], u[l], f[l], h[l], v2);
-    Jacobi(n[l], &u[l], &u_neu[l], f[l], h[l], v2);
+    Red_Black_Gauss(n[l], u[l], f[l], h[l], v2);
+    //Jacobi(n[l], u[l], u_neu[l], f[l], h[l], v2);
     
 }
 
@@ -458,7 +499,7 @@ int main(int argc, char **argv) {
     std::vector<grid<type>> f(l);	// vector of grids for the rig1ht hand side
 	std::vector<grid<type>> res(l);	// vector of grids for the residuums
     std::vector<grid<type>> u(l);	// vector of grids for the approximation u
-    std::vector<grid<type>> u_neu(l);	// vector of grids for the approximation u_neu
+   // std::vector<grid<type>> u_neu(l);	// vector of grids for the approximation u_neu
 
 	// initialisation -------------------------------------------------------------------------------------------
 
@@ -484,9 +525,9 @@ int main(int argc, char **argv) {
 	}
 
     // Initialisierung des Gitters
-    for (int i = l - 1; i >= 0; i--) {
-        u_neu[i] = grid<type>(n[i], n[i], 0.0);
-    }
+  //  for (int i = l - 1; i >= 0; i--) {
+ //       u_neu[i] = grid<type>(n[i], n[i], 0.0);
+  //  }
 
 	// Horizontale und vertikale Randpunkte setzen
 	u[l - 1](n[l - 1] - 1, n[l - 1] / 2) = 0.0;	// Rechts
@@ -536,11 +577,11 @@ int main(int argc, char **argv) {
 		u[l - 1](0, i) = sqrt(sqrt(y * y + 1)) * sin(0.5 * (M_PI + atan(-y)));
 	}
     
-    for (int j = 0; j < n[l - 1]; j++) {
-        for (int i = 0; i < n[l - 1]; i++) {
-            u_neu[l-1](i,j) = u[l-1](i,j);
-        }
-    }
+ //   for (int j = 0; j < n[l - 1]; j++) {
+  //      for (int i = 0; i < n[l - 1]; i++) {
+  //          u_neu[l-1](i,j) = u[l-1](i,j);
+  //      }
+  //  }
 
     //init.dat Ausgabe
     std::ofstream init;
@@ -565,7 +606,7 @@ int main(int argc, char **argv) {
 	gettimeofday(&t0, NULL);
     //Red_Black_Gauss( n[l-1], u[l-1], f[l-1], h[l-1], 10000);
     for(int i = 0; i < cycle; i++){
-        solveMG(l - 1, u, u_neu, f, n, h, res, v1, v2, gamma);
+        solveMG(l - 1, u /*, u_neu*/, f, n, h, res, v1, v2, gamma);
     }
 	gettimeofday(&t, NULL);
 	std::cout << "Wall clock time of MG execution: "
