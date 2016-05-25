@@ -419,7 +419,7 @@ void solveMG(int l, std::vector<grid<type>>& u, std::vector<grid<type>>& f,
 
 */
 
-void solveMG(int l, std::vector<grid<type>>& u, /*std::vector<grid<type>>& u_neu,*/ std::vector<grid<type>>& f,
+void solveMG(int l, std::vector<grid<type>>& u, std::vector<grid<type>>& u_neu, std::vector<grid<type>>& f,
              intVec& n, std::vector<type>& h, std::vector<grid<type>>& res, int v1, int v2, int gamma) {
     
 
