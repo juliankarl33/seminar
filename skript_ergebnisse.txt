@@ -1022,4 +1022,92 @@ too much time - abort
 6, 8, 2, 2, 0.040958, 1818.7, ergebnis noch zu schlecht
 too much time - abort
 too much time - abort
+too much time - abortJacobi vectorisiert
+v1, v2, gamma, cycle, L2 Error, time
+ 
+2, 2, 1, 2, 4.097301, 283.305, ergebnis noch zu schlecht
+2, 2, 1, 3, 0.569513, 424.8, ergebnis noch zu schlecht
+2, 2, 1, 4, 0.132681, 576.827, ergebnis noch zu schlecht
+2, 2, 1, 5, 0.052546, 696.932, ergebnis noch zu schlecht
+2, 2, 1, 6, 0.022697, 851.105, ergebnis noch zu schlecht
+too much time - abort
+3, 2, 1, 2, 2.569005, 361.451, ergebnis noch zu schlecht
+3, 2, 1, 3, 0.330795, 501.344, ergebnis noch zu schlecht
+3, 2, 1, 4, 0.093994, 706.116, ergebnis noch zu schlecht
+too much time - abort
+4, 2, 1, 2, 1.816054, 419.408, ergebnis noch zu schlecht
+4, 2, 1, 3, 0.239085, 614.424, ergebnis noch zu schlecht
+4, 2, 1, 4, 0.074668, 802.037, ergebnis noch zu schlecht
+too much time - abort
+5, 2, 1, 2, 1.373726, 455.289, ergebnis noch zu schlecht
+5, 2, 1, 3, 0.192106, 686.55, ergebnis noch zu schlecht
+5, 2, 1, 4, 0.061310, 895.368, ergebnis noch zu schlecht
+too much time - abort
+6, 2, 1, 2, 1.088753, 515.909, ergebnis noch zu schlecht
+6, 2, 1, 3, 0.163831, 770.323, ergebnis noch zu schlecht
+too much time - abort
+7, 2, 1, 2, 0.894115, 552.41, ergebnis noch zu schlecht
+7, 2, 1, 3, 0.144405, 1195.23, ergebnis noch zu schlecht
+too much time - abort
+8, 2, 1, 2, 0.755749, 622.123, ergebnis noch zu schlecht
+8, 2, 1, 3, 0.130217, 913.836, ergebnis noch zu schlecht
+too much time - abort
+9, 2, 1, 2, 0.654226, 680.2, ergebnis noch zu schlecht
+9, 2, 1, 3, 0.119068, 993.608, ergebnis noch zu schlecht
+too much time - abort
+10, 2, 1, 2, 0.577944, 726.513, ergebnis noch zu schlecht
+too much time - abort
+11, 2, 1, 2, 0.519339, 775.179, ergebnis noch zu schlecht
+too much time - abort
+12, 2, 1, 2, 0.473534, 846.037, ergebnis noch zu schlecht
+too much time - abort
+2, 3, 1, 2, 2.602281, 333.688, ergebnis noch zu schlecht
+2, 3, 1, 3, 0.310263, 519.737, ergebnis noch zu schlecht
+2, 3, 1, 4, 0.075345, 675.319, ergebnis noch zu schlecht
+2, 3, 1, 5, 0.028271, 858.289, ergebnis noch zu schlecht
+too much time - abort
+3, 3, 1, 2, 1.787990, 414.238, ergebnis noch zu schlecht
+3, 3, 1, 3, 0.208666, 591.236, ergebnis noch zu schlecht
+3, 3, 1, 4, 0.058008, 1147.88, ergebnis noch zu schlecht
+too much time - abort
+4, 3, 1, 2, 1.342016, 444.673, ergebnis noch zu schlecht
+4, 3, 1, 3, 0.161872, 700.934, ergebnis noch zu schlecht
+too much time - abort
+5, 3, 1, 2, 1.057661, 524.621, ergebnis noch zu schlecht
+5, 3, 1, 3, 0.134825, 760.911, ergebnis noch zu schlecht
+too much time - abort
+6, 3, 1, 2, 0.862713, 564.376, ergebnis noch zu schlecht
+6, 3, 1, 3, 0.117071, 828.397, ergebnis noch zu schlecht
+too much time - abort
+7, 3, 1, 2, 0.723105, 603.081, ergebnis noch zu schlecht
+7, 3, 1, 3, 0.104487, 936.757, ergebnis noch zu schlecht
+too much time - abort
+8, 3, 1, 2, 0.619935, 685.445, ergebnis noch zu schlecht
+8, 3, 1, 3, 0.094940, 990.73, ergebnis noch zu schlecht
+too much time - abort
+9, 3, 1, 2, 0.541886, 724.228, ergebnis noch zu schlecht
+too much time - abort
+Jacobi vectorisiert zweiter Lauf
+v1, v2, gamma, cycle, L2 Error, time
+ 
+1, 1, 2, 2, 2.016546, 255.1, ergebnis noch zu schlecht
+1, 1, 2, 3, 0.420790, 397.571, ergebnis noch zu schlecht
+1, 1, 2, 4, 0.093546, 516.699, ergebnis noch zu schlecht
+1, 1, 2, 5, 0.022021, 630.797, ergebnis noch zu schlecht
+1, 1, 2, 6, 0.006372, 755.115, ergebnis noch zu schlecht
+too much time - abort
+2, 1, 2, 2, 0.688170, 324.72, ergebnis noch zu schlecht
+2, 1, 2, 3, 0.076875, 521.409, ergebnis noch zu schlecht
+2, 1, 2, 4, 0.008937, 669.82, ergebnis noch zu schlecht
+2, 1, 2, 5, 0.001119, 803.979, ergebnis noch zu schlecht
+too much time - abort
+3, 1, 2, 2, 0.349455, 423.373, ergebnis noch zu schlecht
+3, 1, 2, 3, 0.026373, 591.102, ergebnis noch zu schlecht
+3, 1, 2, 4, 0.003280, 798.464, ergebnis noch zu schlecht
+too much time - abort
+4, 1, 2, 2, 0.228765, 497.981, ergebnis noch zu schlecht
+4, 1, 2, 3, 0.013580, 722.599, ergebnis noch zu schlecht
+too much time - abort
+5, 1, 2, 2, 0.167763, 590.506, ergebnis noch zu schlecht
+5, 1, 2, 3, 0.008685, 837.624, ergebnis noch zu schlecht
 too much time - abort

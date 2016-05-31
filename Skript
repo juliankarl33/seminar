@@ -7,15 +7,15 @@ cycle=1
 ergebnis=0
 output=0
 time=0
-echo "Jacobi" >> skript_ergebnisse.txt
+echo "Jacobi vectorisiert zweiter Lauf" >> skript_ergebnisse.txt
 echo "v1, v2, gamma, cycle, L2 Error, time" >> skript_ergebnisse.txt
 echo " " >> skript_ergebnisse.txt
 
-for gamma in 1 2 3
+for gamma in 2 3
 do
-	for v2 in 2 3 4 5 6 7 8 9 10 11 12
+	for v2 in 1 2 3 4 5 6 7 8 9 10 11 12
 	do
-        for v1 in 2 3 4 5 6 7 8 9 10 11 12
+        for v1 in 1 2 3 4 5 6 7 8 9 10 11 12
         do
             output=$(./seminar $level $v1 $v2 $gamma $cycle)
             ergebnis=$(echo "$output" | grep "error" | awk '{ print $3 }' )
