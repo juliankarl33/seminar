@@ -1,10 +1,10 @@
 CXXFLAGS =	-O3 -fopenmp -g  -Werror -Winline -pedantic -Wall -std=c++11 -fmessage-length=0
 
-OBJS =		seminar.o
+OBJS =		mgsolve.o
 
 LIBS = -fopenmp
 
-TARGET =	seminar
+TARGET =	mgsolve
 
 $(TARGET):	$(OBJS) Makefile
 	$(CXX) -o $(TARGET) $(OBJS) $(LIBS)
