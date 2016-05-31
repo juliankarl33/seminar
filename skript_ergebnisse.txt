@@ -613,3 +613,413 @@ v1, v2, gamma, cycle, L2 Error, time
 3, 2, 4, 4, 0.000015, 19714.9
  
 4, 2, 4, 2, 0.013857, 19714.9, ergebnis noch zu schlecht
+Jacobi
+v1, v2, gamma, cycle, L2 Error, time
+ 
+2, 2, 1, 2, 4.097301, 340.786, ergebnis noch zu schlecht
+2, 2, 1, 3, 0.569513, 492.017, ergebnis noch zu schlecht
+2, 2, 1, 4, 0.132681, 632.235, ergebnis noch zu schlecht
+2, 2, 1, 5, 0.052546, 761.352, ergebnis noch zu schlecht
+too much time - abort
+3, 2, 1, 2, 2.569005, 406.917, ergebnis noch zu schlecht
+3, 2, 1, 3, 0.330795, 582.89, ergebnis noch zu schlecht
+3, 2, 1, 4, 0.093994, 782.796, ergebnis noch zu schlecht
+too much time - abort
+4, 2, 1, 2, 1.816054, 476.657, ergebnis noch zu schlecht
+4, 2, 1, 3, 0.239085, 660.622, ergebnis noch zu schlecht
+4, 2, 1, 4, 0.074668, 849.238, ergebnis noch zu schlecht
+too much time - abort
+5, 2, 1, 2, 1.373726, 539.899, ergebnis noch zu schlecht
+5, 2, 1, 3, 0.192106, 743.484, ergebnis noch zu schlecht
+too much time - abort
+6, 2, 1, 2, 1.088753, 553.839, ergebnis noch zu schlecht
+6, 2, 1, 3, 0.163831, 859.095, ergebnis noch zu schlecht
+too much time - abort
+7, 2, 1, 2, 0.894115, 644.285, ergebnis noch zu schlecht
+7, 2, 1, 3, 0.144405, 925.42, ergebnis noch zu schlecht
+too much time - abort
+8, 2, 1, 2, 0.755749, 680.024, ergebnis noch zu schlecht
+8, 2, 1, 3, 0.130217, 1071.94, ergebnis noch zu schlecht
+too much time - abort
+9, 2, 1, 2, 0.654226, 737.077, ergebnis noch zu schlecht
+too much time - abort
+10, 2, 1, 2, 0.577944, 804.949, ergebnis noch zu schlecht
+too much time - abort
+11, 2, 1, 2, 0.519339, 844.094, ergebnis noch zu schlecht
+too much time - abort
+12, 2, 1, 2, 0.473534, 904.05, ergebnis noch zu schlecht
+too much time - abort
+2, 3, 1, 2, 2.602281, 411.293, ergebnis noch zu schlecht
+2, 3, 1, 3, 0.310263, 545.448, ergebnis noch zu schlecht
+2, 3, 1, 4, 0.075345, 720.574, ergebnis noch zu schlecht
+too much time - abort
+3, 3, 1, 2, 1.787990, 426.352, ergebnis noch zu schlecht
+3, 3, 1, 3, 0.208666, 632.691, ergebnis noch zu schlecht
+3, 3, 1, 4, 0.058008, 1407.91, ergebnis noch zu schlecht
+too much time - abort
+4, 3, 1, 2, 1.342016, 502.468, ergebnis noch zu schlecht
+4, 3, 1, 3, 0.161872, 756.804, ergebnis noch zu schlecht
+too much time - abort
+5, 3, 1, 2, 1.057661, 597.596, ergebnis noch zu schlecht
+5, 3, 1, 3, 0.134825, 871.347, ergebnis noch zu schlecht
+too much time - abort
+6, 3, 1, 2, 0.862713, 651.424, ergebnis noch zu schlecht
+6, 3, 1, 3, 0.117071, 909.205, ergebnis noch zu schlecht
+too much time - abort
+7, 3, 1, 2, 0.723105, 677.987, ergebnis noch zu schlecht
+7, 3, 1, 3, 0.104487, 1032.13, ergebnis noch zu schlecht
+too much time - abort
+8, 3, 1, 2, 0.619935, 766.073, ergebnis noch zu schlecht
+too much time - abort
+9, 3, 1, 2, 0.541886, 831.334, ergebnis noch zu schlecht
+too much time - abort
+10, 3, 1, 2, 0.481623, 870.519, ergebnis noch zu schlecht
+too much time - abort
+11, 3, 1, 2, 0.434343, 911.782, ergebnis noch zu schlecht
+too much time - abort
+12, 3, 1, 2, 0.396634, 1004.72, ergebnis noch zu schlecht
+too much time - abort
+2, 4, 1, 2, 1.825718, 452.826, ergebnis noch zu schlecht
+2, 4, 1, 3, 0.199745, 665.839, ergebnis noch zu schlecht
+2, 4, 1, 4, 0.050828, 864.885, ergebnis noch zu schlecht
+too much time - abort
+3, 4, 1, 2, 1.336325, 524.482, ergebnis noch zu schlecht
+3, 4, 1, 3, 0.147866, 721.252, ergebnis noch zu schlecht
+too much time - abort
+4, 4, 1, 2, 1.045968, 577.849, ergebnis noch zu schlecht
+4, 4, 1, 3, 0.120653, 870.665, ergebnis noch zu schlecht
+too much time - abort
+5, 4, 1, 2, 0.849337, 657.477, ergebnis noch zu schlecht
+5, 4, 1, 3, 0.103224, 949.45, ergebnis noch zu schlecht
+too much time - abort
+6, 4, 1, 2, 0.708490, 731.821, ergebnis noch zu schlecht
+too much time - abort
+7, 4, 1, 2, 0.604062, 743.074, ergebnis noch zu schlecht
+too much time - abort
+8, 4, 1, 2, 0.524769, 814.808, ergebnis noch zu schlecht
+too much time - abort
+9, 4, 1, 2, 0.463325, 887.199, ergebnis noch zu schlecht
+too much time - abort
+10, 4, 1, 2, 0.414970, 945.879, ergebnis noch zu schlecht
+too much time - abort
+11, 4, 1, 2, 0.376318, 1033.12, ergebnis noch zu schlecht
+too much time - abort
+12, 4, 1, 2, 0.345059, 1014.4, ergebnis noch zu schlecht
+too much time - abort
+2, 5, 1, 2, 1.360141, 521.339, ergebnis noch zu schlecht
+2, 5, 1, 3, 0.140507, 753.824, ergebnis noch zu schlecht
+too much time - abort
+3, 5, 1, 2, 1.042001, 589.79, ergebnis noch zu schlecht
+3, 5, 1, 3, 0.110718, 852.995, ergebnis noch zu schlecht
+too much time - abort
+4, 5, 1, 2, 0.841043, 647.372, ergebnis noch zu schlecht
+4, 5, 1, 3, 0.093326, 944.956, ergebnis noch zu schlecht
+too much time - abort
+5, 5, 1, 2, 0.698687, 683.7, ergebnis noch zu schlecht
+5, 5, 1, 3, 0.081539, 997.626, ergebnis noch zu schlecht
+too much time - abort
+6, 5, 1, 2, 0.593182, 724.128, ergebnis noch zu schlecht
+too much time - abort
+7, 5, 1, 2, 0.512886, 802.242, ergebnis noch zu schlecht
+too much time - abort
+8, 5, 1, 2, 0.450509, 837.212, ergebnis noch zu schlecht
+too much time - abort
+9, 5, 1, 2, 0.401292, 933.942, ergebnis noch zu schlecht
+too much time - abort
+10, 5, 1, 2, 0.361867, 974.536, ergebnis noch zu schlecht
+too much time - abort
+11, 5, 1, 2, 0.329930, 1012.12, ergebnis noch zu schlecht
+too much time - abort
+12, 5, 1, 2, 0.303718, 1112.57, ergebnis noch zu schlecht
+too much time - abort
+2, 6, 1, 2, 1.056665, 558.573, ergebnis noch zu schlecht
+2, 6, 1, 3, 0.105795, 814.394, ergebnis noch zu schlecht
+too much time - abort
+3, 6, 1, 2, 0.837934, 636.595, ergebnis noch zu schlecht
+3, 6, 1, 3, 0.086980, 941.523, ergebnis noch zu schlecht
+too much time - abort
+4, 6, 1, 2, 0.692813, 682.065, ergebnis noch zu schlecht
+4, 6, 1, 3, 0.075223, 989.754, ergebnis noch zu schlecht
+too much time - abort
+too much time - abort
+6, 6, 1, 2, 0.505238, 819.954, ergebnis noch zu schlecht
+too much time - abort
+7, 6, 1, 2, 0.442173, 870.862, ergebnis noch zu schlecht
+too much time - abort
+8, 6, 1, 2, 0.392320, 901.609, ergebnis noch zu schlecht
+too much time - abort
+9, 6, 1, 2, 0.352312, 1021.18, ergebnis noch zu schlecht
+too much time - abort
+10, 6, 1, 2, 0.319849, 1041.11, ergebnis noch zu schlecht
+too much time - abort
+11, 6, 1, 2, 0.293176, 1114.38, ergebnis noch zu schlecht
+too much time - abort
+12, 6, 1, 2, 0.271071, 1143.68, ergebnis noch zu schlecht
+too much time - abort
+2, 7, 1, 2, 0.846545, 663.463, ergebnis noch zu schlecht
+2, 7, 1, 3, 0.083061, 928.731, ergebnis noch zu schlecht
+too much time - abort
+3, 7, 1, 2, 0.689657, 663.136, ergebnis noch zu schlecht
+3, 7, 1, 3, 0.070442, 1874.91, ergebnis noch zu schlecht
+too much time - abort
+4, 7, 1, 2, 0.581303, 742.266, ergebnis noch zu schlecht
+too much time - abort
+5, 7, 1, 2, 0.499516, 785.703, ergebnis noch zu schlecht
+too much time - abort
+6, 7, 1, 2, 0.435892, 843.369, ergebnis noch zu schlecht
+too much time - abort
+7, 7, 1, 2, 0.385517, 926.519, ergebnis noch zu schlecht
+too much time - abort
+8, 7, 1, 2, 0.345031, 1022.48, ergebnis noch zu schlecht
+too much time - abort
+9, 7, 1, 2, 0.312131, 1057.89, ergebnis noch zu schlecht
+too much time - abort
+10, 7, 1, 2, 0.285063, 1133.46, ergebnis noch zu schlecht
+too much time - abort
+11, 7, 1, 2, 0.262614, 1222.46, ergebnis noch zu schlecht
+too much time - abort
+12, 7, 1, 2, 0.243781, 1234.89, ergebnis noch zu schlecht
+too much time - abort
+2, 8, 1, 2, 0.694894, 661.769, ergebnis noch zu schlecht
+2, 8, 1, 3, 0.067652, 1023.45, ergebnis noch zu schlecht
+too much time - abort
+3, 8, 1, 2, 0.578514, 745.413, ergebnis noch zu schlecht
+too much time - abort
+4, 8, 1, 2, 0.495506, 823.264, ergebnis noch zu schlecht
+too much time - abort
+too much time - abort
+6, 8, 1, 2, 0.380554, 936.443, ergebnis noch zu schlecht
+too much time - abort
+7, 8, 1, 2, 0.339681, 988.583, ergebnis noch zu schlecht
+too much time - abort
+8, 8, 1, 2, 0.306423, 1025.56, ergebnis noch zu schlecht
+too much time - abort
+9, 8, 1, 2, 0.279033, 1113.88, ergebnis noch zu schlecht
+too much time - abort
+10, 8, 1, 2, 0.256289, 1157.91, ergebnis noch zu schlecht
+too much time - abort
+11, 8, 1, 2, 0.237203, 1192.36, ergebnis noch zu schlecht
+too much time - abort
+12, 8, 1, 2, 0.221081, 1299.43, ergebnis noch zu schlecht
+too much time - abort
+2, 9, 1, 2, 0.581525, 741.251, ergebnis noch zu schlecht
+too much time - abort
+3, 9, 1, 2, 0.492851, 788.146, ergebnis noch zu schlecht
+too much time - abort
+4, 9, 1, 2, 0.427831, 839.303, ergebnis noch zu schlecht
+too much time - abort
+5, 9, 1, 2, 0.376624, 920.006, ergebnis noch zu schlecht
+too much time - abort
+6, 9, 1, 2, 0.335420, 980.31, ergebnis noch zu schlecht
+too much time - abort
+7, 9, 1, 2, 0.301853, 1019.59, ergebnis noch zu schlecht
+too much time - abort
+8, 9, 1, 2, 0.274180, 1083.99, ergebnis noch zu schlecht
+too much time - abort
+9, 9, 1, 2, 0.251183, 1186.92, ergebnis noch zu schlecht
+too much time - abort
+10, 9, 1, 2, 0.231865, 1207.02, ergebnis noch zu schlecht
+too much time - abort
+11, 9, 1, 2, 0.215545, 1258.03, ergebnis noch zu schlecht
+too much time - abort
+too much time - abort
+2, 10, 1, 2, 0.494608, 819.474, ergebnis noch zu schlecht
+too much time - abort
+3, 10, 1, 2, 0.425483, 879.349, ergebnis noch zu schlecht
+too much time - abort
+4, 10, 1, 2, 0.373654, 939.009, ergebnis noch zu schlecht
+too much time - abort
+5, 10, 1, 2, 0.332126, 995.677, ergebnis noch zu schlecht
+too much time - abort
+6, 10, 1, 2, 0.298295, 1097.89, ergebnis noch zu schlecht
+too much time - abort
+7, 10, 1, 2, 0.270377, 1113.91, ergebnis noch zu schlecht
+too much time - abort
+8, 10, 1, 2, 0.247154, 1145.13, ergebnis noch zu schlecht
+too much time - abort
+9, 10, 1, 2, 0.227638, 1204.89, ergebnis noch zu schlecht
+too much time - abort
+10, 10, 1, 2, 0.211135, 1266.33, ergebnis noch zu schlecht
+too much time - abort
+11, 10, 1, 2, 0.197048, 1351.06, ergebnis noch zu schlecht
+too much time - abort
+too much time - abort
+2, 11, 1, 2, 0.426362, 842.324, ergebnis noch zu schlecht
+too much time - abort
+3, 11, 1, 2, 0.371475, 952.67, ergebnis noch zu schlecht
+too much time - abort
+4, 11, 1, 2, 0.329475, 957.125, ergebnis noch zu schlecht
+too much time - abort
+5, 11, 1, 2, 0.295376, 1046.77, ergebnis noch zu schlecht
+too much time - abort
+6, 11, 1, 2, 0.267239, 1104.16, ergebnis noch zu schlecht
+too much time - abort
+7, 11, 1, 2, 0.243814, 1163.08, ergebnis noch zu schlecht
+too much time - abort
+8, 11, 1, 2, 0.224112, 1218.2, ergebnis noch zu schlecht
+too much time - abort
+9, 11, 1, 2, 0.207447, 1303.5, ergebnis noch zu schlecht
+too much time - abort
+10, 11, 1, 2, 0.193210, 1422.55, ergebnis noch zu schlecht
+too much time - abort
+too much time - abort
+too much time - abort
+2, 12, 1, 2, 0.371866, 942.111, ergebnis noch zu schlecht
+too much time - abort
+3, 12, 1, 2, 0.327540, 1003.28, ergebnis noch zu schlecht
+too much time - abort
+4, 12, 1, 2, 0.293074, 1117.37, ergebnis noch zu schlecht
+too much time - abort
+5, 12, 1, 2, 0.264714, 1146.47, ergebnis noch zu schlecht
+too much time - abort
+6, 12, 1, 2, 0.241104, 1198.82, ergebnis noch zu schlecht
+too much time - abort
+7, 12, 1, 2, 0.221234, 1220.29, ergebnis noch zu schlecht
+too much time - abort
+8, 12, 1, 2, 0.204416, 1274.03, ergebnis noch zu schlecht
+too much time - abort
+too much time - abort
+too much time - abort
+too much time - abort
+too much time - abort
+2, 2, 2, 2, 0.351806, 438.74, ergebnis noch zu schlecht
+2, 2, 2, 3, 0.026183, 695.08, ergebnis noch zu schlecht
+2, 2, 2, 4, 0.002041, 907.024, ergebnis noch zu schlecht
+too much time - abort
+3, 2, 2, 2, 0.225916, 546.215, ergebnis noch zu schlecht
+3, 2, 2, 3, 0.013619, 779.972, ergebnis noch zu schlecht
+too much time - abort
+4, 2, 2, 2, 0.165663, 629.371, ergebnis noch zu schlecht
+4, 2, 2, 3, 0.008294, 901.412, ergebnis noch zu schlecht
+too much time - abort
+5, 2, 2, 2, 0.128735, 703.714, ergebnis noch zu schlecht
+too much time - abort
+6, 2, 2, 2, 0.103508, 776.93, ergebnis noch zu schlecht
+too much time - abort
+7, 2, 2, 2, 0.085337, 869.197, ergebnis noch zu schlecht
+too much time - abort
+8, 2, 2, 2, 0.071721, 941.407, ergebnis noch zu schlecht
+too much time - abort
+9, 2, 2, 2, 0.061257, 1031.59, ergebnis noch zu schlecht
+too much time - abort
+10, 2, 2, 2, 0.053000, 1148.96, ergebnis noch zu schlecht
+too much time - abort
+11, 2, 2, 2, 0.046384, 1214.15, ergebnis noch zu schlecht
+too much time - abort
+12, 2, 2, 2, 0.040971, 1316.23, ergebnis noch zu schlecht
+too much time - abort
+2, 3, 2, 2, 0.231790, 515.199, ergebnis noch zu schlecht
+2, 3, 2, 3, 0.013752, 768.972, ergebnis noch zu schlecht
+too much time - abort
+3, 3, 2, 2, 0.166315, 633.477, ergebnis noch zu schlecht
+3, 3, 2, 3, 0.008605, 933.23, ergebnis noch zu schlecht
+too much time - abort
+4, 3, 2, 2, 0.128730, 676.952, ergebnis noch zu schlecht
+4, 3, 2, 3, 0.005595, 1011.12, ergebnis noch zu schlecht
+too much time - abort
+5, 3, 2, 2, 0.103522, 791.228, ergebnis noch zu schlecht
+too much time - abort
+6, 3, 2, 2, 0.085303, 874.411, ergebnis noch zu schlecht
+too much time - abort
+7, 3, 2, 2, 0.071738, 935.546, ergebnis noch zu schlecht
+too much time - abort
+8, 3, 2, 2, 0.061235, 1051.46, ergebnis noch zu schlecht
+too much time - abort
+9, 3, 2, 2, 0.053016, 1140.62, ergebnis noch zu schlecht
+too much time - abort
+10, 3, 2, 2, 0.046367, 1184.25, ergebnis noch zu schlecht
+too much time - abort
+11, 3, 2, 2, 0.040985, 1301.16, ergebnis noch zu schlecht
+too much time - abort
+too much time - abort
+2, 4, 2, 2, 0.169755, 600.227, ergebnis noch zu schlecht
+2, 4, 2, 3, 0.008506, 923.46, ergebnis noch zu schlecht
+too much time - abort
+3, 4, 2, 2, 0.129147, 680.925, ergebnis noch zu schlecht
+3, 4, 2, 3, 0.005830, 1031.12, ergebnis noch zu schlecht
+too much time - abort
+4, 4, 2, 2, 0.103524, 771.386, ergebnis noch zu schlecht
+too much time - abort
+5, 4, 2, 2, 0.085321, 864.165, ergebnis noch zu schlecht
+too much time - abort
+6, 4, 2, 2, 0.071707, 989.92, ergebnis noch zu schlecht
+too much time - abort
+7, 4, 2, 2, 0.061247, 1021.26, ergebnis noch zu schlecht
+too much time - abort
+8, 4, 2, 2, 0.052991, 1097.6, ergebnis noch zu schlecht
+too much time - abort
+9, 4, 2, 2, 0.046376, 1210.37, ergebnis noch zu schlecht
+too much time - abort
+10, 4, 2, 2, 0.040964, 1297.56, ergebnis noch zu schlecht
+too much time - abort
+too much time - abort
+too much time - abort
+2, 5, 2, 2, 0.131213, 678.518, ergebnis noch zu schlecht
+2, 5, 2, 3, 0.005704, 1046.11, ergebnis noch zu schlecht
+too much time - abort
+3, 5, 2, 2, 0.103788, 798.225, ergebnis noch zu schlecht
+too much time - abort
+4, 5, 2, 2, 0.085328, 857.022, ergebnis noch zu schlecht
+too much time - abort
+5, 5, 2, 2, 0.071737, 965.678, ergebnis noch zu schlecht
+too much time - abort
+6, 5, 2, 2, 0.061231, 1027.5, ergebnis noch zu schlecht
+too much time - abort
+7, 5, 2, 2, 0.053011, 1089.31, ergebnis noch zu schlecht
+too much time - abort
+8, 5, 2, 2, 0.046362, 1191.24, ergebnis noch zu schlecht
+too much time - abort
+9, 5, 2, 2, 0.040980, 1277.89, ergebnis noch zu schlecht
+too much time - abort
+10, 5, 2, 2, 0.036484, 1353.34, ergebnis noch zu schlecht
+too much time - abort
+too much time - abort
+too much time - abort
+2, 6, 2, 2, 0.105062, 782.938, ergebnis noch zu schlecht
+too much time - abort
+3, 6, 2, 2, 0.085477, 888.075, ergebnis noch zu schlecht
+too much time - abort
+4, 6, 2, 2, 0.071720, 959.42, ergebnis noch zu schlecht
+too much time - abort
+5, 6, 2, 2, 0.061246, 2463.4, ergebnis noch zu schlecht
+too much time - abort
+6, 6, 2, 2, 0.052987, 1125.07, ergebnis noch zu schlecht
+too much time - abort
+7, 6, 2, 2, 0.046373, 1196.03, ergebnis noch zu schlecht
+too much time - abort
+8, 6, 2, 2, 0.040960, 1317.34, ergebnis noch zu schlecht
+too much time - abort
+too much time - abort
+too much time - abort
+too much time - abort
+too much time - abort
+2, 7, 2, 2, 0.086330, 838.763, ergebnis noch zu schlecht
+too much time - abort
+3, 7, 2, 2, 0.071831, 955.052, ergebnis noch zu schlecht
+too much time - abort
+4, 7, 2, 2, 0.061239, 1077.71, ergebnis noch zu schlecht
+too much time - abort
+5, 7, 2, 2, 0.053009, 1118.88, ergebnis noch zu schlecht
+too much time - abort
+6, 7, 2, 2, 0.046360, 1234.48, ergebnis noch zu schlecht
+too much time - abort
+7, 7, 2, 2, 0.040977, 1313.01, ergebnis noch zu schlecht
+too much time - abort
+8, 7, 2, 2, 0.036481, 1394.75, ergebnis noch zu schlecht
+too much time - abort
+too much time - abort
+too much time - abort
+too much time - abort
+too much time - abort
+2, 8, 2, 2, 0.072402, 956.748, ergebnis noch zu schlecht
+too much time - abort
+3, 8, 2, 2, 0.061306, 1049.01, ergebnis noch zu schlecht
+too much time - abort
+4, 8, 2, 2, 0.052991, 1119.24, ergebnis noch zu schlecht
+too much time - abort
+5, 8, 2, 2, 0.046371, 1193.88, ergebnis noch zu schlecht
+too much time - abort
+6, 8, 2, 2, 0.040958, 1818.7, ergebnis noch zu schlecht
+too much time - abort
+too much time - abort
+too much time - abort
