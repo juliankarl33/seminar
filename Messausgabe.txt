@@ -1,0 +1,7 @@
+RBGauss Pre 	 	9.484
+Residuum 	 	5.238
+Restrict Residual 	 	2.265
+set u = 0 	 	0.718
+Interpolation 	 	3.653
+Correction 	 	6.061
+RBGauss Post 	 	9.642
