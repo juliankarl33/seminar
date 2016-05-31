@@ -1111,3 +1111,30 @@ too much time - abort
 5, 1, 2, 2, 0.167763, 590.506, ergebnis noch zu schlecht
 5, 1, 2, 3, 0.008685, 837.624, ergebnis noch zu schlecht
 too much time - abort
+6, 1, 2, 2, 0.129936, 647.563, ergebnis noch zu schlecht
+6, 1, 2, 3, 0.005651, 929.104, ergebnis noch zu schlecht
+too much time - abort
+7, 1, 2, 2, 0.104301, 721.171, ergebnis noch zu schlecht
+too much time - abort
+8, 1, 2, 2, 0.085811, 796.966, ergebnis noch zu schlecht
+too much time - abort
+9, 1, 2, 2, 0.072085, 3389.82, ergebnis noch zu schlecht
+too much time - abort
+10, 1, 2, 2, 0.061481, 953.573, ergebnis noch zu schlecht
+too much time - abort
+11, 1, 2, 2, 0.053197, 1025.51, ergebnis noch zu schlecht
+too much time - abort
+12, 1, 2, 2, 0.046503, 1116.98, ergebnis noch zu schlecht
+too much time - abort
+1, 2, 2, 2, 0.753971, 343.52, ergebnis noch zu schlecht
+1, 2, 2, 3, 0.083957, 482.953, ergebnis noch zu schlecht
+1, 2, 2, 4, 0.010228, 650.403, ergebnis noch zu schlecht
+1, 2, 2, 5, 0.002739, 816.639, ergebnis noch zu schlecht
+too much time - abort
+2, 2, 2, 2, 0.351806, 415.125, ergebnis noch zu schlecht
+2, 2, 2, 3, 0.026183, 624.346, ergebnis noch zu schlecht
+2, 2, 2, 4, 0.002041, 812.786, ergebnis noch zu schlecht
+too much time - abort
+3, 2, 2, 2, 0.225916, 515.499, ergebnis noch zu schlecht
+3, 2, 2, 3, 0.013619, 703.647, ergebnis noch zu schlecht
+too much time - abort
